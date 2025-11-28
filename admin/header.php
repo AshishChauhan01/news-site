@@ -1,3 +1,4 @@
+<?php include("../connection.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +25,7 @@
 
                     <div class="col-md-6">
                         <div class="logout">
-                            Hello Ashish <a href="logout.php" class="admin-logout btn btn-sm btn-danger">logout&nbsp;<i class="fa-solid fa-key"></i>
+                            Hello <b>Ashish</b> <a href="logout.php" class="admin-logout btn btn-sm btn-danger">logout&nbsp;<i class="fa-solid fa-key"></i>
                             </a>
                         </div>
                     </div>

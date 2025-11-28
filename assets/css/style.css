@@ -168,6 +168,7 @@ form {
 header {
   position: fixed;
   width: 100%;
+  z-index: 999;
 }
 header .top-header {
   background: #1e90ff;
@@ -178,8 +179,8 @@ header .top-header .logo img {
   height: 48px;
 }
 header .top-header .logout {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 500;
   color: #fff;
   text-align: end;
 }
