@@ -59,7 +59,7 @@ if (isset($_GET['error'])) {
     }
 }
 if (isset($_GET['success']) && $_GET['success'] == '1') {
-    echo "<div class='alert alert-success'>User data successfully inserted.</div>";
+    echo "<div class='alert alert-success'>User data successfully added.</div>";
 }
 ?>
 <section class="users-section section-padding min-height">
