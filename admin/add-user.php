@@ -85,7 +85,7 @@ if (isset($_GET['success']) && $_GET['success'] == '1') {
                             </div>
                             <div class="col-md-6">
                                 <label for="last_name" class="form-label">Last Name</label>
-                                <input type="text" name="last_name" placeholder="Enter Last Name" class="form-control" required>
+                                <input type="text" name="last_name" placeholder="Enter Last Name" class="form-control">
                             </div>
                         </div>
                         <div class="mb-3">

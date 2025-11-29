@@ -1,4 +1,9 @@
 <?php include "header.php"; ?>
+<?php
+$query = "SELECT * FROM users WHERE is_active = 1";
+$fetch_records = mysqli_query($conn, $query);
+?>
+
 <section class="users-section section-padding min-height">
     <div class="container">
         <div class="row align-items-center">
@@ -14,6 +19,7 @@
             <thead class="table-dark text-center">
                 <tr>
                     <th>#</th>
+                    <th>Id</th>
                     <th>Full Name</th>
                     <th>Email</th>
                     <th>User Name</th>
@@ -22,39 +28,32 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1.</td>
-                    <td>Ashish Chauhan</td>
-                    <td>ashishchauhanindian@gmail.com</td>
-                    <td>ashish@chauhan</td>
-                    <td>Admin</td>
-                    <td class="text-center">
-                        <a href="edit-user.php" class="mx-3 edit-icon"><i class="fa-solid fa-pen-to-square text-secondary"></i></a>
-                        <a href="delete-user.php" class="mx-3 delete-icon"> <i class="fa-solid fa-trash text-secondary"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2.</td>
-                    <td>Ashish Chauhan</td>
-                    <td>ashishchauhanindian@gmail.com</td>
-                    <td>ashish@chauhan</td>
-                    <td>Admin</td>
-                    <td class="text-center">
-                        <a href="edit-user.php" class="mx-3 edit-icon"><i class="fa-solid fa-pen-to-square text-secondary"></i></a>
-                        <a href="delete-user.php" class="mx-3 delete-icon"> <i class="fa-solid fa-trash text-secondary"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3.</td>
-                    <td>Ashish Chauhan</td>
-                    <td>ashishchauhanindian@gmail.com</td>
-                    <td>ashish@chauhan</td>
-                    <td>Admin</td>
-                    <td class="text-center">
-                        <a href="edit-user.php" class="mx-3 edit-icon"><i class="fa-solid fa-pen-to-square text-secondary"></i></a>
-                        <a href="delete-user.php" class="mx-3 delete-icon"> <i class="fa-solid fa-trash text-secondary"></i></a>
-                    </td>
-                </tr>
+                <?php if (mysqli_num_rows($fetch_records) > 0) : ?>
+                    <?php
+                    $count = 1;
+                    while ($data = mysqli_fetch_assoc($fetch_records)):
+                    ?>
+
+                        <tr>
+                            <td><?= $count; ?>.</td>
+                            <td><?= $data['id']; ?></td>
+                            <td><?= $data['first_name'] . "&nbsp;" . $data['last_name'] ?></td>
+                            <td><?= $data['email']; ?></td>
+                            <td><?= $data['username']; ?></td>
+                            <td><?= $data['user_type'] == '0' ? 'Admin' : 'Standard User'; ?></td>
+                            <td class="text-center">
+                                <a href="edit-user.php?id=<?= $data['id'] ?>" class="mx-2 edit-icon"><i class="fa-solid fa-pen-to-square text-secondary"></i></a>
+                                <a href="delete-user.php" class="mx-2 delete-icon"> <i class="fa-solid fa-trash text-secondary"></i></a>
+                            </td>
+                        </tr>
+                    <?php
+                        $count++;
+                    endwhile; ?>
+                <?php else:  ?>
+                    <tr class="text-center">
+                        <td colspan="7">😢 No records found!</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
