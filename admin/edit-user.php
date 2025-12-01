@@ -1,12 +1,67 @@
 <?php
 include 'header.php';
+$user_id = intval($_GET['id']);
+$query = "SELECT * FROM users WHERE id = $user_id";
+
+$fetch_record = mysqli_query($conn, $query);
+$record = mysqli_fetch_assoc($fetch_record);
+
 $records_query = "SELECT first_name, last_name, username, user_type FROM users ORDER BY id DESC LIMIT 6";
 $latest_records = mysqli_query($conn, $records_query);
 
-$user_id = intval($_GET['id']);
-$query = "SELECT * FROM users WHERE id = $user_id";
-$fetch_record = mysqli_query($conn, $query);
-$record = mysqli_fetch_assoc($fetch_record);
+if (isset($_POST['update'])) {
+    $fields = ['user_id', 'first_name', 'last_name', 'email', 'username', 'user_type'];
+    foreach ($fields as $field) {
+        $$field = mysqli_real_escape_string($conn, trim($_POST[$field]));
+    }
+    $password = trim($_POST['password']);
+    $confirm_password = trim($_POST['confirm_password']);
+    $update_query = "UPDATE users SET first_name = '$first_name', last_name = '$last_name', email = '$email', username = '$username', user_type = '$user_type' ";
+    if (!empty($password) && !empty($confirm_password)) {
+        if ($password !== $confirm_password) {
+            header('location:' . $_SERVER['PHP_SELF'] . '?error=pwd&id=' . $user_id);
+            exit;
+        }
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $update_query .= ", password = '$hashed_password'";
+    }
+
+    $email_query = "SELECT id FROM users WHERE email = '$email' AND id != $user_id";
+    $check_email = mysqli_query($conn, $email_query);
+    if (mysqli_num_rows($check_email) > 0) {
+        header("location:" . $_SERVER['PHP_SELF'] . "?error=email");
+        exit();
+    }
+
+    $user_name_query = "SELECT id FROM users WHERE username = '$username' AND id != $user_id";
+    $check_user_name = mysqli_query($conn, $user_name_query);
+    if (mysqli_num_rows($check_user_name) > 0) {
+        header("location:" . $_SERVER['PHP_SELF'] . "?error=username");
+        exit();
+    }
+
+    $update_query .= "WHERE id = $user_id";
+    $query_execute = mysqli_query($conn, $update_query);
+
+    if ($query_execute) {
+        header('location:users.php?success=updated');
+    } else {
+        echo "Data not updated : " . mysqli_error($conn);
+    }
+}
+if (isset($_GET['error'])) {
+    if ($_GET['error'] == "pwd") {
+        echo "<div class='alert alert-danger'>Your entered password do not match!</div>";
+    }
+
+    if ($_GET['error'] == "email") {
+        echo "<div class='alert alert-danger'>Email already exists!</div>";
+    }
+
+    if ($_GET['error'] == "username") {
+        echo "<div class='alert alert-danger'>Username already exists!</div>";
+    }
+}
 ?>
 <section class="users-section section-padding min-height">
     <div class="container">
@@ -64,8 +119,9 @@ $record = mysqli_fetch_assoc($fetch_record);
                                 <option value="1" <?= $record['user_type'] == 1 ? 'selected' : ''; ?>>Standard User</option>
                             </select>
                         </div>
+                        <input type="hidden" name="user_id" value="<?= $user_id; ?>">
                         <div>
-                            <button type="submit" name="submit" class="btn btn-success btn-sm">Update Details</button>
+                            <button type="submit" name="update" class="btn btn-success btn-sm">Update Details</button>
                         </div>
                     </form>
                 </div>

@@ -2,6 +2,22 @@
 <?php
 $query = "SELECT * FROM users WHERE is_active = 1";
 $fetch_records = mysqli_query($conn, $query);
+
+if (isset($_GET['success'])) {
+    $alert_text = '';
+    if ($_GET['success'] === 'updated') {
+        $alert_text = "😊 Record has been successfully updated.";
+    }
+    if ($_GET['success'] === 'inserted') {
+        $alert_text = "😊 Record has been successfully inserted.";
+    }
+
+    if (!empty($alert_text)) {
+        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>$alert_text
+        <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+        </div>";
+    }
+}
 ?>
 
 <section class="users-section section-padding min-height">

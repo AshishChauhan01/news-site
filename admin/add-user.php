@@ -46,20 +46,38 @@ if (isset($_POST['submit'])) {
 }
 
 if (isset($_GET['error'])) {
+    $alert_text = "";
+
     if ($_GET['error'] == "pwd") {
-        echo "<div class='alert alert-danger'>Your entered password do not match!</div>";
+        $alert_text = "Your entered password do not match!";
     }
 
     if ($_GET['error'] == "email") {
-        echo "<div class='alert alert-danger'>Email already exists!</div>";
+        $alert_text = "Email already exists!";
     }
 
     if ($_GET['error'] == "username") {
-        echo "<div class='alert alert-danger'>Username already exists!</div>";
+        $alert_text = "Username already exists!";
+    }
+
+    if (!empty($alert_text)) {
+        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>$alert_text
+        <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+        </div>";
     }
 }
-if (isset($_GET['success']) && $_GET['success'] == '1') {
-    echo "<div class='alert alert-success'>User data successfully inserted.</div>";
+if (isset($_GET['success'])) {
+    $alert_text = "";
+
+    if ($_GET['success'] == '1') {
+        $alert_text = "😊 User data successfully inserted.";
+    }
+
+    if (!empty($alert_text)) {
+        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>$alert_text
+        <button type='button' class='btn-close btn-sm' data-bs-dismiss='alert'></button>
+        </div>";
+    }
 }
 ?>
 <section class="users-section section-padding min-height">
