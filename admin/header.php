@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>New Website</title>
     <link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../assets/plugins/fontawesome/css/fontawesome.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -57,4 +58,4 @@
             </div>
         </div>
     </header>
-    <div class="main-page"></div>
+    <div class="blank-space"></div>

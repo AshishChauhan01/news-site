@@ -7,8 +7,9 @@
         </div>
     </div>
 </div>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/custom.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/custom.js"></script>
+<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -1,7 +1,23 @@
 <?php include "header.php"; ?>
 <?php
-$records_query = "SELECT * FROM users";
-$records_data = mysqli_query($conn, $records_query);
+$query = "SELECT * FROM users WHERE is_active = 1";
+$fetch_records = mysqli_query($conn, $query);
+
+if (isset($_GET['success'])) {
+    $alert_text = '';
+    if ($_GET['success'] === 'updated') {
+        $alert_text = "😊 Record has been successfully updated.";
+    }
+    if ($_GET['success'] === 'inserted') {
+        $alert_text = "😊 Record has been successfully inserted.";
+    }
+
+    if (!empty($alert_text)) {
+        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>$alert_text
+        <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+        </div>";
+    }
+}
 ?>
 
 <section class="users-section section-padding min-height">
@@ -19,6 +35,7 @@ $records_data = mysqli_query($conn, $records_query);
             <thead class="table-dark text-center">
                 <tr>
                     <th>#</th>
+                    <th>Id</th>
                     <th>Full Name</th>
                     <th>Email</th>
                     <th>User Name</th>
@@ -27,25 +44,32 @@ $records_data = mysqli_query($conn, $records_query);
                 </tr>
             </thead>
             <tbody>
-                <?php if (mysqli_num_rows($records_data) > 0) { ?>
-                    <?php while ($record = mysqli_fetch_assoc($records_data)) { ?>
+                <?php if (mysqli_num_rows($fetch_records) > 0) : ?>
+                    <?php
+                    $count = 1;
+                    while ($data = mysqli_fetch_assoc($fetch_records)):
+                    ?>
+
                         <tr>
-                            <td><?= $record['id']; ?>.</td>
-                            <td><?= $record['first_name'] . "&nbsp;" . $record['last_name']; ?> </td>
-                            <td><?= $record['email']; ?></td>
-                            <td><?= $record['username']; ?></td>
-                            <td><?= $record['user_type'] == "0" ? 'Admin' : 'Standard User'; ?></td>
+                            <td><?= $count; ?>.</td>
+                            <td><?= $data['id']; ?></td>
+                            <td><?= $data['first_name'] . "&nbsp;" . $data['last_name'] ?></td>
+                            <td><?= $data['email']; ?></td>
+                            <td><?= $data['username']; ?></td>
+                            <td><?= $data['user_type'] == '0' ? 'Admin' : 'Standard User'; ?></td>
                             <td class="text-center">
-                                <a href="edit-user.php?id=<?= $record['id']; ?>" class="mx-2 edit-icon"><i class="fa-solid fa-pen-to-square text-secondary"></i></a>
-                                <a href="delete-user.php?id=<?= $record['id']; ?>" class="mx-2 delete-icon" onclick="return confirm('Are you sure?');"> <i class="fa-solid fa-trash text-secondary"></i></a>
+                                <a href="edit-user.php?id=<?= $data['id'] ?>" class="mx-2 edit-icon"><i class="fa-solid fa-pen-to-square text-secondary"></i></a>
+                                <a href="delete-user.php" class="mx-2 delete-icon"> <i class="fa-solid fa-trash text-secondary"></i></a>
                             </td>
                         </tr>
-                    <?php } ?>
-                <?php } else { ?>
+                    <?php
+                        $count++;
+                    endwhile; ?>
+                <?php else:  ?>
                     <tr class="text-center">
-                        <td colspan="6"><b>Data not found!.</b></td>
+                        <td colspan="7">😢 No records found!</td>
                     </tr>
-                <?php } ?>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>

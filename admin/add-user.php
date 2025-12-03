@@ -46,20 +46,38 @@ if (isset($_POST['submit'])) {
 }
 
 if (isset($_GET['error'])) {
+    $alert_text = "";
+
     if ($_GET['error'] == "pwd") {
-        echo "<div class='alert alert-danger'>Your entered password do not match!</div>";
+        $alert_text = "Your entered password do not match!";
     }
 
     if ($_GET['error'] == "email") {
-        echo "<div class='alert alert-danger'>Email already exists!</div>";
+        $alert_text = "Email already exists!";
     }
 
     if ($_GET['error'] == "username") {
-        echo "<div class='alert alert-danger'>Username already exists!</div>";
+        $alert_text = "Username already exists!";
+    }
+
+    if (!empty($alert_text)) {
+        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>$alert_text
+        <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+        </div>";
     }
 }
-if (isset($_GET['success']) && $_GET['success'] == '1') {
-    echo "<div class='alert alert-success'>User data successfully added.</div>";
+if (isset($_GET['success'])) {
+    $alert_text = "";
+
+    if ($_GET['success'] == '1') {
+        $alert_text = "😊 User data successfully inserted.";
+    }
+
+    if (!empty($alert_text)) {
+        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>$alert_text
+        <button type='button' class='btn-close btn-sm' data-bs-dismiss='alert'></button>
+        </div>";
+    }
 }
 ?>
 <section class="users-section section-padding min-height">
@@ -85,7 +103,7 @@ if (isset($_GET['success']) && $_GET['success'] == '1') {
                             </div>
                             <div class="col-md-6">
                                 <label for="last_name" class="form-label">Last Name</label>
-                                <input type="text" name="last_name" placeholder="Enter Last Name" class="form-control" required>
+                                <input type="text" name="last_name" placeholder="Enter Last Name" class="form-control">
                             </div>
                         </div>
                         <div class="mb-3">
