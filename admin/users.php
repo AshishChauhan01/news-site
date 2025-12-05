@@ -72,13 +72,11 @@ if (isset($_GET['success'])) {
                             <td><?= $data['user_type'] == '0' ? 'Admin' : 'Standard User'; ?></td>
                             <td class="text-center">
                                 <a href="edit-user.php?id=<?= $data['id'] ?>" class="mx-2 edit-icon">
-                                    <!-- <i class="fa-solid fa-pen-to-square text-secondary"></i> -->
-                                    Edit
+                                    <i class="fa-solid fa-pen-to-square text-secondary"></i>
                                 </a>
 
                                 <a href="delete-user.php?id=<?= $data['id']; ?>" class="mx-2 delete-icon" onclick="return confirm('Are you sure?')">
-                                    Delete
-                                    <!-- <i class="fa-solid fa-trash text-secondary"></i> -->
+                                    <i class="fa-solid fa-trash text-secondary"></i>
                                 </a>
 
                             </td>

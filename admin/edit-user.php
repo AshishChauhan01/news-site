@@ -6,7 +6,7 @@ $query = "SELECT * FROM users WHERE id = $user_id";
 $fetch_record = mysqli_query($conn, $query);
 $record = mysqli_fetch_assoc($fetch_record);
 
-$records_query = "SELECT first_name, last_name, username, user_type FROM users ORDER BY updated_at DESC  LIMIT 6";
+$records_query = "SELECT first_name, last_name, username, user_type FROM users ORDER BY updated_at DESC LIMIT 6";
 $latest_records = mysqli_query($conn, $records_query);
 
 if (isset($_POST['update'])) {
