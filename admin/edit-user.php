@@ -6,17 +6,17 @@ $query = "SELECT * FROM users WHERE id = $user_id";
 $fetch_record = mysqli_query($conn, $query);
 $record = mysqli_fetch_assoc($fetch_record);
 
-$records_query = "SELECT first_name, last_name, username, user_type FROM users ORDER BY updated_at DESC LIMIT 6";
+$records_query = "SELECT first_name, last_name, username, user_role FROM users ORDER BY updated_at DESC LIMIT 6";
 $latest_records = mysqli_query($conn, $records_query);
 
 if (isset($_POST['update'])) {
-    $fields = ['user_id', 'first_name', 'last_name', 'email', 'username', 'user_type'];
+    $fields = ['user_id', 'first_name', 'last_name', 'email', 'username', 'user_role'];
     foreach ($fields as $field) {
         $$field = mysqli_real_escape_string($conn, trim($_POST[$field]));
     }
     $password = trim($_POST['password']);
     $confirm_password = trim($_POST['confirm_password']);
-    $update_query = "UPDATE users SET first_name = '$first_name', last_name = '$last_name', email = '$email', username = '$username', user_type = '$user_type' ";
+    $update_query = "UPDATE users SET first_name = '$first_name', last_name = '$last_name', email = '$email', username = '$username', user_role = '$user_role' ";
     if (!empty($password) && !empty($confirm_password)) {
         if ($password !== $confirm_password) {
             header('location:' . $_SERVER['PHP_SELF'] . '?error=pwd&id=' . $user_id);
@@ -78,7 +78,7 @@ if (isset($_GET['error'])) {
         <div class="mt-2">
             <div class="row">
                 <div class="col-md-8">
-                    <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST">
+                    <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" class="form">
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="first_name" class="form-label">First Name</label>
@@ -113,26 +113,26 @@ if (isset($_GET['error'])) {
                             </div>
                         </div>
                         <div class="mb-4">
-                            <label for="user_type" class="form-label">Types of User</label>
-                            <select name="user_type" id="user_type" class="form-select" required>
-                                <option value="0" <?= $record['user_type'] == 0 ? 'selected' : ''; ?>>Admin</option>
-                                <option value="1" <?= $record['user_type'] == 1 ? 'selected' : ''; ?>>Standard User</option>
+                            <label for="user_role" class="form-label">Types of User</label>
+                            <select name="user_role" id="user_role" class="form-select" required>
+                                <option value="0" <?= $record['user_role'] == 0 ? 'selected' : ''; ?>>Admin</option>
+                                <option value="1" <?= $record['user_role'] == 1 ? 'selected' : ''; ?>>Standard User</option>
                             </select>
                         </div>
                         <input type="hidden" name="user_id" value="<?= $user_id; ?>">
                         <div>
-                            <button type="submit" name="update" class="btn btn-success btn-sm">Update Details</button>
+                            <button type="submit" name="update" class="btn btn-success btn-md w-100">Update Details</button>
                         </div>
                     </form>
                 </div>
                 <div class="col-md-4">
-                    <h3 class="border-bottom border-2 mb-0">Latest Updated Users</h3>
+                    <h3 class="border-bottom border-2 mb-0 pb-2">Latest Updated Users</h3>
                     <ul class="list-style-bullet">
                         <?php if (mysqli_num_rows($latest_records) > 0) {
                             while ($rows = mysqli_fetch_assoc($latest_records)) {
                         ?>
                                 <li class="border-bottom py-3">
-                                    &#10687; <?php echo $rows['first_name'] . "&nbsp;" . $rows['last_name'] ?><sup>(<?php echo $rows['user_type'] == "0" ? 'Admin' : 'Standard User'; ?>)</sup>
+                                    &#10687; <?php echo $rows['first_name'] . "&nbsp;" . $rows['last_name'] ?><sup>(<?php echo $rows['user_role'] == "0" ? 'Admin' : 'Standard User'; ?>)</sup>
                                     <br>
                                     <span class="ms-3"><b>Username:</b> <?php echo $rows['username']; ?></span>
                                 </li>

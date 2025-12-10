@@ -19,3 +19,6 @@ created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,    
 PRIMARY KEY (id)
 );
+
+//change column name user_type to user_role
+ALTER TABLE `users` CHANGE `user_type` `user_role` TINYINT(1) UNSIGNED NULL DEFAULT '1';

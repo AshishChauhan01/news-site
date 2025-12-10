@@ -18,7 +18,7 @@ body {
 }
 
 .min-height {
-  min-height: calc(100vh - 136px);
+  min-height: calc(100vh - 143px);
 }
 
 a,
@@ -155,7 +155,7 @@ h2.page-heading {
   text-align: center;
 }
 
-form {
+form.form {
   background: #fff;
   padding: 25px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.13);
@@ -461,16 +461,87 @@ i.fa {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-/* Footer Styling */
-#footer {
+.login-page {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(333deg, dodgerblue 30%, rgba(30, 144, 255, 0.6) 70%, dodgerblue 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-page .login-box {
+  width: 400px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #fff;
+  text-align: center;
+}
+.login-page .login-box .logo img {
+  width: auto;
+  height: 52px;
+}
+.login-page .login-box h4 {
+  margin: 8px 0px 4px;
+  font-size: 20px;
+  font-weight: 600;
+}
+.login-page .login-box p {
+  color: #555555;
+}
+.login-page .login-box p.signup {
+  font-size: 12px;
+  margin-bottom: 0px;
+  padding-top: 14px;
+  margin-top: 20px;
+  border-top: 1px solid rgba(85, 85, 85, 0.1);
+}
+.login-page .login-box p.signup a {
+  font-weight: 600;
+}
+.login-page .login-box form {
+  text-align: left;
+}
+.login-page .login-box form label {
+  font-size: 14px;
+}
+.login-page .login-box form input.form-control {
+  color: #555555;
+  font-size: 14px;
+}
+.login-page .login-box form .remember-me-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+.login-page .login-box form button {
+  background-color: #1e90ff;
   color: #fff;
-  padding: 15px 0;
+}
+.login-page .login-box form button:hover {
+  opacity: 0.85;
+}
+.login-page .copyright-text {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 10px;
+  margin-top: 14px;
+  margin-bottom: 0px;
+}
+
+/* Footer Styling */
+footer {
+  color: #fff;
+  padding: 8px 0;
   text-align: center;
   background-color: #1e90ff;
 }
-#footer a {
+footer p {
+  font-size: 14px;
+}
+footer a {
   color: #fff;
 }
-#footer a:hover {
+footer a:hover {
   text-decoration: underline;
 }/*# sourceMappingURL=style.css.map */
