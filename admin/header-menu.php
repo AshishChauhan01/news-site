@@ -1,6 +1,6 @@
   <header>
       <div class="top-header">
-          <div class="container-fluid">
+          <div class="container">
               <div class="row align-items-center">
                   <div class="col-md-6">
                       <div class="logo">
@@ -10,7 +10,8 @@
 
                   <div class="col-md-6">
                       <div class="logout">
-                          Hello <b><?= $_SESSION['login_user_name']; ?></b> <a href="logout.php" class="admin-logout btn btn-sm btn-danger">logout&nbsp;<i class="fa-solid fa-key"></i>
+                          Hello <b><?= $_SESSION['login_user_name']; ?></b> <a href="logout.php" class="admin-logout btn btn-sm btn-danger">logout&nbsp;<i class="fa-solid fa-right-from-bracket"></i>
+
                           </a>
                       </div>
                   </div>
@@ -33,7 +34,7 @@
                               <a href="categories.php">Category</a>
                           </li>
                           <li>
-                              <a href="users.php">Users</a>
+                              <a href="users.php" class="<?= $activePage === 'users' ? 'active' : ''; ?>">Users</a>
                           </li>
                           <li>
                               <a href="settings.php">Settings</a>

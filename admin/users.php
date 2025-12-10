@@ -1,5 +1,7 @@
-<?php include "header.php"; ?>
 <?php
+$activePage = 'users';
+include "header.php";
+
 $pagination_limit = 8;
 $page_no = $_GET['page'] ?? 1;
 $offset = ($pagination_limit * $page_no) - $pagination_limit;
@@ -35,62 +37,68 @@ if (isset($_GET['success'])) {
 
 <section class="users-section section-padding min-height">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <h2>All Users</h2>
+        <div class="table-wrapper">
+            <div class="title-head">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h2>All Users</h2>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <a href="add-user.php" class="btn btn-success btn-sm">Add User <i class="fa-solid fa-user-plus"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 text-end">
-                <a href="add-user.php" class="btn btn-success btn-sm">Add User <i class="fa-solid fa-user-pen"></i>
-                </a>
-            </div>
-        </div>
-        <table class="table table-striped table-bordered border-white mt-2">
-            <thead class="table-dark text-center">
-                <tr>
-                    <th>#</th>
-                    <th>Id</th>
-                    <th>Full Name</th>
-                    <th>Email</th>
-                    <th>User Name</th>
-                    <th>Role</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (mysqli_num_rows($fetch_records) > 0) : ?>
-                    <?php
-                    $count = 1;
-                    while ($data = mysqli_fetch_assoc($fetch_records)):
-                    ?>
-
-                        <tr>
-                            <td><?= $count; ?>.</td>
-                            <td><?= $data['id']; ?></td>
-                            <td><?= $data['first_name'] . "&nbsp;" . $data['last_name'] ?></td>
-                            <td><?= $data['email']; ?></td>
-                            <td><?= $data['username']; ?></td>
-                            <td><?= $data['user_role'] == '0' ? 'Admin' : 'Standard User'; ?></td>
-                            <td class="text-center">
-                                <a href="edit-user.php?id=<?= $data['id'] ?>" class="mx-2 edit-icon">
-                                    <i class="fa-solid fa-pen-to-square text-secondary"></i>
-                                </a>
-
-                                <a href="delete-user.php?id=<?= $data['id']; ?>" class="mx-2 delete-icon" onclick="return confirm('Are you sure?')">
-                                    <i class="fa-solid fa-trash text-secondary"></i>
-                                </a>
-
-                            </td>
-                        </tr>
-                    <?php
-                        $count++;
-                    endwhile; ?>
-                <?php else:  ?>
-                    <tr class="text-center">
-                        <td colspan="7">😢 No records found!</td>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Id</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>User Name</th>
+                        <th>Role</th>
+                        <th>Action</th>
                     </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php if (mysqli_num_rows($fetch_records) > 0) : ?>
+                        <?php
+                        $count = 1;
+                        while ($data = mysqli_fetch_assoc($fetch_records)):
+                        ?>
+
+                            <tr>
+                                <td><?= $count; ?>.</td>
+                                <td><?= $data['id']; ?></td>
+                                <td><?= $data['first_name'] . "&nbsp;" . $data['last_name'] ?></td>
+                                <td><?= $data['email']; ?></td>
+                                <td><?= $data['username']; ?></td>
+                                <td class="user-role">
+                                    <span class="<?= $data['user_role'] == '0' ? 'admin' : ''; ?>"><?= $data['user_role'] == '0' ? 'Admin' : 'Standard User'; ?></span>
+                                </td>
+                                <td class="text-center">
+                                    <a href="edit-user.php?id=<?= $data['id'] ?>" class="mx-2 edit-icon">
+                                        <i class="fa-solid fa-pen-to-square text-secondary"></i>
+                                    </a>
+
+                                    <a href="delete-user.php?id=<?= $data['id']; ?>" class="mx-2 delete-icon" onclick="return confirm('Are you sure?')">
+                                        <i class="fa-solid fa-trash text-secondary"></i>
+                                    </a>
+
+                                </td>
+                            </tr>
+                        <?php
+                            $count++;
+                        endwhile; ?>
+                    <?php else:  ?>
+                        <tr class="text-center">
+                            <td colspan="7">😢 No records found!</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
         <?php
         $total_pages = ceil($total_records / $pagination_limit);
 
