@@ -129,31 +129,33 @@ if (isset($_GET['error'])) {
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="section-wrapper">
-                        <div class="title-head">
-                            <h3>Latest Updated Users</h3>
-                        </div>
-                        <ul>
-                            <?php if (mysqli_num_rows($latest_records) > 0) {
-                                while ($rows = mysqli_fetch_assoc($latest_records)) {
-                            ?>
-                                    <li>
-                                        <div>
-                                            <span>
-                                                <?php echo $rows['first_name'] . "&nbsp;" . $rows['last_name'] ?>
-                                            </span>
-                                            <span>
-                                                (<?php echo $rows['user_role'] == "0" ? 'Admin' : 'Standard User'; ?>)
-                                            </span>
-                                            <span>
-                                                <b>Username:</b> <?php echo $rows['username']; ?>
-                                            </span>
-                                        </div>
-                                    </li>
-                            <?php }
-                            } ?>
+                    <div class="sticky-effect">
+                        <div class="section-wrapper">
+                            <div class="title-head">
+                                <h3>Latest Updated Users</h3>
+                            </div>
+                            <ul>
+                                <?php if (mysqli_num_rows($latest_records) > 0) {
+                                    while ($rows = mysqli_fetch_assoc($latest_records)) {
+                                ?>
+                                        <li>
+                                            <div>
+                                                <span>
+                                                    <?php echo $rows['first_name'] . "&nbsp;" . $rows['last_name'] ?>
+                                                </span>
+                                                <span>
+                                                    (<?php echo $rows['user_role'] == "0" ? 'Admin' : 'Standard User'; ?>)
+                                                </span>
+                                                <span>
+                                                    <b>Username:</b> <?php echo $rows['username']; ?>
+                                                </span>
+                                            </div>
+                                        </li>
+                                <?php }
+                                } ?>
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
