@@ -82,7 +82,6 @@ if (isset($_GET['success'])) {
 ?>
 <section class="users-section section-padding min-height">
     <div class="container">
-
         <div class="mt-2">
             <div class="row">
                 <div class="col-md-8">
@@ -152,9 +151,16 @@ if (isset($_GET['success'])) {
                             ?>
                                     <li>
                                         <div>
-                                            <span><?php echo $rows['first_name'] . "&nbsp;" . $rows['last_name'] ?></span><span>(<?php echo $rows['user_role'] == "0" ? 'Admin' : 'Standard User'; ?>)</span>
+                                            <span>
+                                                <?php echo $rows['first_name'] . "&nbsp;" . $rows['last_name'] ?>
+                                            </span>
+                                            <span>
+                                                (<?php echo $rows['user_role'] == "0" ? 'Admin' : 'Standard User'; ?>)
+                                            </span>
                                             <br>
-                                            <span><b>Username:</b> <?php echo $rows['username']; ?></span>
+                                            <span>
+                                                <b>Username:</b> <?php echo $rows['username']; ?>
+                                            </span>
                                         </div>
                                     </li>
                             <?php }
