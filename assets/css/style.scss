@@ -23,7 +23,7 @@ body {
 }
 
 .min-height {
-  min-height: calc(100vh - 143px);
+  min-height: calc(100vh - 140px);
 }
 a,
 a:hover,
@@ -70,7 +70,7 @@ h2.page-heading {
   padding: 100px 0 0;
 }
 
-.table-wrapper {
+.section-wrapper {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   background-color: #fff;
@@ -78,11 +78,17 @@ h2.page-heading {
   overflow: hidden;
   .title-head {
     padding: 20px;
+    border-bottom: 1px solid rgba(#ced4da, 0.65);
     h2 {
       margin-bottom: 0px;
       font-size: 24px;
     }
+    h3 {
+      font-size: 18px;
+      margin-bottom: 0;
+    }
   }
+
   table {
     margin-bottom: 0px;
     thead {
@@ -126,6 +132,68 @@ h2.page-heading {
             &.admin {
               background-color: #dbeafe;
               color: #173ab8;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  form {
+    label {
+      color: rgba($color: #364153, $alpha: 1);
+      font-size: 14px;
+    }
+    input,
+    select {
+      border-radius: 8px;
+      padding: 10px 12px;
+      &:focus {
+        border: 2px solid var(--main-color);
+        box-shadow: none;
+      }
+    }
+    button {
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+  }
+
+  ul {
+    margin: 20px;
+    padding-left: 20px;
+    li {
+      margin: 30px 0px;
+      font-size: 14px;
+      list-style: disc;
+      &::marker {
+        color: var(--main-color);
+        line-height: 1;
+        font-size: 24px;
+      }
+      > div {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        span {
+          display: block;
+          min-width: 50%;
+          &:first-child {
+            color: #000;
+          }
+          &:nth-child(2) {
+            color: #99a1af;
+            font-size: 12px;
+            text-align: right;
+          }
+          &:last-child {
+            display: block;
+            width: 100%;
+            font-size: 12px;
+            color: #99a1af;
+            b {
+              color: rgba($color: #000000, $alpha: 0.6);
             }
           }
         }
@@ -270,7 +338,8 @@ h2.page-heading {
 form {
   &.form {
     background: #fff;
-    padding: 25px;
+    padding: 20px;
+    padding-bottom: 30px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.13);
   }
 }
@@ -471,7 +540,14 @@ header {
       font-size: 12px;
       &:hover,
       &:focus {
-        background: #333;
+        background: #0f1a3d;
+        color: #fff;
+      }
+    }
+    &.active {
+      a {
+        background-color: #14255c !important;
+        color: #fff;
       }
     }
   }

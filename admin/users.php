@@ -37,7 +37,7 @@ if (isset($_GET['success'])) {
 
 <section class="users-section section-padding min-height">
     <div class="container">
-        <div class="table-wrapper">
+        <div class="section-wrapper">
             <div class="title-head">
                 <div class="row align-items-center">
                     <div class="col-md-6">
