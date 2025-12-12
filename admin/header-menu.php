@@ -25,21 +25,20 @@
                   <div class="col-md-12">
                       <ul class="admin-menu">
                           <li>
-                              <a href="index.php">Dashboard</a>
+                              <a href="index.php" class="<?= $activePage === 'dashboard' ? 'active' : ''; ?>">Dashboard</a>
                           </li>
                           <li>
-                              <a href="posts.php">Post</a>
+                              <a href="posts.php" class="<?= $activePage === 'posts' ? 'active' : ''; ?>">Post</a>
                           </li>
                           <li>
-                              <a href="categories.php">Category</a>
+                              <a href="categories.php" class="<?= $activePage === 'categories' ? 'active' : ''; ?>">Category</a>
                           </li>
                           <li>
                               <a href="users.php" class="<?= $activePage === 'users' ? 'active' : ''; ?>">Users</a>
                           </li>
                           <li>
-                              <a href="settings.php">Settings</a>
+                              <a href="settings.php" class="<?= $activePage === 'settings' ? 'active' : ''; ?>">Settings</a>
                           </li>
-
                       </ul>
                   </div>
               </div>

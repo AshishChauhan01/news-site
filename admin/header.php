@@ -18,6 +18,7 @@ if (!isset($login_page)) {
     <link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="../assets/plugins/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="../assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="../assets/plugins/remixIcon/fonts/remixicon.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 

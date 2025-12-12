@@ -4,6 +4,18 @@
 :root {
   --main-color: #1453f2;
   --gray-color: #6a7282;
+  --slate-color: #45556c;
+  --dark-slate-color: #0f172b;
+  --blue-color: #3a75ff;
+  --light-blue-color: #ddeaff;
+  --green-color: #17b576;
+  --light-green-color: #d4fae4;
+  --text-green: #009966;
+  --orange-color: #f55d00;
+  --light-orange-color: #fdedd3;
+  --purple-color: #9b2cff;
+  --light-puple-color: #f2e8ff;
+  --red-color: #e7000b;
 }
 
 body {
@@ -207,7 +219,7 @@ h2.page-heading {
   height: 100%;
   > div {
     position: sticky;
-    top: 20%;
+    top: 5%;
   }
 }
 #admin-menubar {
@@ -811,4 +823,128 @@ footer {
       text-decoration: underline;
     }
   }
+}
+
+//New CSS BY Ashish
+
+.common-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark-slate-color);
+}
+
+.dashboard-section {
+  .welcome {
+    font-size: 16px;
+    color: var(--slate-color);
+    margin-bottom: 0;
+  }
+
+  .dashboard-elements {
+    margin-top: 32px;
+    a {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+    }
+    .element-box {
+      padding: 24px;
+      border-radius: 16px;
+      height: 100%;
+      background-color: #fff;
+      box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      .icon {
+        width: 48px;
+        height: 48px;
+        padding: 12px;
+        background-color: var(--blue-color);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        margin-bottom: 16px;
+        transition: scale 0.3s ease-in-out;
+        i {
+          font-size: 24px;
+          color: #fff;
+        }
+      }
+      p {
+        margin-bottom: 4px;
+        &.title {
+          color: var(--slate-color);
+          opacity: 0.85;
+        }
+        &.count {
+          color: var(--dark-slate-color);
+          opacity: 0.85;
+        }
+      }
+      .graph-percentage {
+        font-size: 16px;
+        color: var(--text-green);
+      }
+      &:hover {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        transform: translateY(-5px);
+        .icon {
+          scale: 1.08;
+        }
+      }
+    }
+  }
+}
+.quick-actions-section {
+  margin-top: 32px;
+  .title {
+    color: var(--dark-slate-color);
+    margin-bottom: 16px;
+  }
+  .quick-action {
+    padding: 20px;
+    border-radius: 16px;
+    height: 100%;
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    .icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      border-radius: 10px;
+      i {
+        color: #fff;
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.bg-blue {
+  background-color: var(--blue-color) !important;
+}
+
+.bg-green {
+  background-color: var(--green-color) !important;
+}
+
+.bg-orange {
+  background-color: var(--orange-color) !important;
+}
+
+.bg-purple {
+  background-color: var(--purple-color) !important;
+}
+
+.text-green {
+  color: var(--text-green) !important;
+}
+
+.text-red {
+  color: var(--red-color) !important;
 }
