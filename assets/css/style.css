@@ -985,6 +985,13 @@ footer a:hover {
   color: var(--slate-color);
   opacity: 0.6;
 }
+.recent-activities-section .recent-activities .activity-item .activity-details p.post-title {
+  color: var(--slate-color);
+  opacity: 0.5;
+  font-size: 14px;
+  font-style: italic;
+  margin-top: 4px;
+}
 .recent-activities-section .recent-activities .activity-item .activity-time {
   text-align: right;
   color: var(--slate-color);

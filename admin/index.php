@@ -337,100 +337,210 @@ include "header.php"; ?>
             </div>
         </div>
     </div>
-    <div class="recent-activities-section">
-        <div class="container">
-            <div class="recent-activities">
-                <div class="title-head">
-                    <h2>Recent Activities</h2>
-                    <a href="#" class="view-all-btn">View All</a>
-                </div>
-                <div class="activity-item">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <div class="activity-details">
-                                <div class="activity-icon bg-blue-light">
-                                    <i class="ri-user-add-line color-blue"></i>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="recent-activities-section">
+                    <div class="recent-activities">
+                        <div class="title-head">
+                            <h2>Recent Activities</h2>
+                            <a href="#" class="view-all-btn">View All</a>
+                        </div>
+                        <div class="activity-item">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="activity-details">
+                                        <div class="activity-icon bg-blue-light">
+                                            <i class="ri-user-add-line color-blue"></i>
+                                        </div>
+                                        <div>
+                                            <p class="activity-text">New user account created</p>
+                                            <p class="user-name">John Doe</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="activity-text">New user account created</p>
-                                    <p class="user-name">John Doe</p>
+                                <div class="col-md-4">
+                                    <p class="activity-time"><i class="ri-time-line"></i>&nbsp;2 minutes ago</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <p class="activity-time"><i class="ri-time-line"></i>&nbsp;2 minutes ago</p>
+                        <div class="activity-item">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="activity-details">
+                                        <div class="activity-icon bg-purple-light">
+                                            <i class="ri-edit-line color-purple"></i>
+                                        </div>
+                                        <div>
+                                            <p class="activity-text">User profile updated</p>
+                                            <p class="user-name">Sarah Wilson</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <p class="activity-time"><i class="ri-time-line"></i>&nbsp;15 minutes ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="activity-details">
+                                        <div class="activity-icon bg-green-light">
+                                            <i class="ri-checkbox-circle-line color-green"></i>
+                                        </div>
+                                        <div>
+                                            <p class="activity-text">User account activated</p>
+                                            <p class="user-name">Mike Johnson</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <p class="activity-time"><i class="ri-time-line"></i>&nbsp;1 hour ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="activity-details">
+                                        <div class="activity-icon bg-light-pink">
+                                            <i class="ri-close-circle-line text-red"></i>
+                                        </div>
+                                        <div>
+                                            <p class="activity-text">User account deactivated</p>
+                                            <p class="user-name">Emma Brown</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <p class="activity-time"><i class="ri-time-line"></i>&nbsp;2 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="activity-details">
+                                        <div class="activity-icon bg-orange-light">
+                                            <i class="ri-shield-line color-orange"></i>
+                                        </div>
+                                        <div>
+                                            <p class="activity-text">User role changed to Admin</p>
+                                            <p class="user-name">David Lee</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <p class="activity-time"><i class="ri-time-line"></i>&nbsp;3 hours ago</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="activity-item">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <div class="activity-details">
-                                <div class="activity-icon bg-purple-light">
-                                    <i class="ri-edit-line color-purple"></i>
+            </div>
+            <div class="col-md-6">
+                <div class="recent-activities-section">
+                    <div class="recent-activities">
+                        <div class="title-head">
+                            <h2>Recent Post Activity</h2>
+                            <a href="#" class="view-all-btn">View All</a>
+                        </div>
+                        <div class="activity-item">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="activity-details">
+                                        <div class="activity-icon bg-blue-light">
+                                            <i class="ri-file-edit-line color-blue"></i>
+                                        </div>
+                                        <div>
+                                            <p class="activity-text">New post published</p>
+                                            <p class="user-name">Sarah Wilson</p>
+                                            <p class="post-title">"10 Tips for Better Productivity"</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="activity-text">User profile updated</p>
-                                    <p class="user-name">Sarah Wilson</p>
+                                <div class="col-md-4">
+                                    <p class="activity-time"><i class="ri-time-line"></i>&nbsp;5 minutes ago</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <p class="activity-time"><i class="ri-time-line"></i>&nbsp;15 minutes ago</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="activity-item">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <div class="activity-details">
-                                <div class="activity-icon bg-green-light">
-                                    <i class="ri-checkbox-circle-line color-green"></i>
+                        <div class="activity-item">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="activity-details">
+                                        <div class="activity-icon bg-green-light">
+                                            <i class="ri-chat-4-line color-green"></i>
+                                        </div>
+                                        <div>
+                                            <p class="activity-text">New comment on post</p>
+                                            <p class="user-name">Mike Johnson</p>
+                                            <p class="post-title">"Great article about productivity!"</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="activity-text">User account activated</p>
-                                    <p class="user-name">Mike Johnson</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <p class="activity-time"><i class="ri-time-line"></i>&nbsp;1 hour ago</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="activity-item">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <div class="activity-details">
-                                <div class="activity-icon bg-light-pink">
-                                    <i class="ri-close-circle-line text-red"></i>
-                                </div>
-                                <div>
-                                    <p class="activity-text">User account deactivated</p>
-                                    <p class="user-name">Emma Brown</p>
+                                <div class="col-md-4">
+                                    <p class="activity-time"><i class="ri-time-line"></i>&nbsp;20 minutes ago</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <p class="activity-time"><i class="ri-time-line"></i>&nbsp;2 hours ago</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="activity-item">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <div class="activity-details">
-                                <div class="activity-icon bg-orange-light">
-                                    <i class="ri-shield-line color-orange"></i>
+                        <div class="activity-item">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="activity-details">
+                                        <div class="activity-icon bg-purple-light">
+                                            <i class="ri-pencil-line color-purple"></i>
+                                        </div>
+                                        <div>
+                                            <p class="activity-text">Post updated</p>
+                                            <p class="user-name">Emma Brown</p>
+                                            <p class="post-title">"Understanding Modern Design"</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="activity-text">User role changed to Admin</p>
-                                    <p class="user-name">David Lee</p>
+                                <div class="col-md-4">
+                                    <p class="activity-time"><i class="ri-time-line"></i>&nbsp;45 minutes ago</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <p class="activity-time"><i class="ri-time-line"></i>&nbsp;3 hours ago</p>
+                        <div class="activity-item">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="activity-details">
+                                        <div class="activity-icon bg-orange-light">
+                                            <i class="fa-solid fa-arrow-trend-up color-orange"></i>
+                                        </div>
+                                        <div>
+                                            <p class="activity-text">Post trending</p>
+                                            <p class="user-name">David Lee</p>
+                                            <p class="post-title">"AI Revolution in 2025" - 1.2K views</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <p class="activity-time"><i class="ri-time-line"></i>&nbsp;1 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="activity-details">
+                                        <div class="activity-icon bg-light-pink">
+                                            <i class="ri-delete-bin-line text-red"></i>
+                                        </div>
+                                        <div>
+                                            <p class="activity-text">Post deleted</p>
+                                            <p class="user-name">John Doe</p>
+                                            <p class="post-title">"Outdated tutorial removed"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <p class="activity-time"><i class="ri-time-line"></i>&nbsp;2 hours ago</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

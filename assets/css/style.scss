@@ -1089,6 +1089,13 @@ footer {
             color: var(--slate-color);
             opacity: 0.6;
           }
+          &.post-title {
+            color: var(--slate-color);
+            opacity: 0.5;
+            font-size: 14px;
+            font-style: italic;
+            margin-top: 4px;
+          }
         }
       }
       .activity-time {
