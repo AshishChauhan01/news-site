@@ -47,3 +47,38 @@ removeImage.addEventListener("click", () => {
   uploadContent.style.display = "flex";
 });
 
+
+const editor = document.getElementById("editor");
+const counter = document.getElementById("counter");
+
+document.querySelectorAll(".editor-tools button").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const action = btn.dataset.action;
+
+    if (action === "bold") document.execCommand("bold");
+    if (action === "italic") document.execCommand("italic");
+    if (action === "ul") document.execCommand("insertUnorderedList");
+    if (action === "link") {
+      const url = prompt("Enter URL");
+      if (url) document.execCommand("createLink", false, url);
+    }
+  });
+});
+
+editor.addEventListener("input", () => {
+  const text = editor.innerText.trim();
+  const words = text ? text.split(/\s+/).length : 0;
+  const chars = text.length;
+
+  counter.innerText = `${words} words • ${chars} characters`;
+});
+
+
+const textarea = document.getElementById("metaDescription");
+const count = document.getElementById("metaCount");
+
+textarea.addEventListener("input", () => {
+  count.textContent = textarea.value.length;
+});
+
