@@ -144,21 +144,6 @@ h2.page-heading {
   background-color: #dbeafe;
   color: #173ab8;
 }
-.section-wrapper form label {
-  color: #364153;
-  font-size: 14px;
-}
-.section-wrapper form input,
-.section-wrapper form select {
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 14px;
-}
-.section-wrapper form input:focus,
-.section-wrapper form select:focus {
-  border: 2px solid var(--main-color);
-  box-shadow: none;
-}
 .section-wrapper form button {
   border-radius: 8px;
   padding: 8px;
@@ -733,6 +718,7 @@ footer a:hover {
   font-size: 24px;
   font-weight: 700;
   color: var(--dark-slate-color);
+  opacity: 0.9;
 }
 
 .sm-section-title {
@@ -740,6 +726,24 @@ footer a:hover {
   margin-top: 32px;
   margin-bottom: 16px;
   font-size: 18px;
+}
+
+label {
+  color: var(--dark-slate-color);
+  opacity: 0.95;
+  font-size: 14px;
+}
+
+input,
+select {
+  border-radius: 8px !important;
+  padding: 10px 12px !important;
+  font-size: 14px !important;
+}
+input:focus,
+select:focus {
+  border: 2px solid var(--main-color) !important;
+  box-shadow: none !important;
 }
 
 .blue-btn {
@@ -753,6 +757,106 @@ footer a:hover {
   color: #ffffff;
   scale: 0.98;
   opacity: 0.95;
+}
+
+.page-title p {
+  font-size: 16px;
+  color: var(--slate-color);
+  margin-bottom: 0;
+}
+.page-title p:last-child {
+  margin-bottom: 28px;
+}
+
+.bg-blue,
+.bg-color-1 {
+  background-color: var(--blue-color) !important;
+}
+
+.bg-blue-light,
+.bg-color-light-1 {
+  background-color: var(--light-blue-color) !important;
+}
+
+.color-blue,
+.color-1 {
+  color: var(--blue-color) !important;
+}
+
+.bg-green,
+.bg-color-2 {
+  background-color: var(--green-color) !important;
+}
+
+.bg-green-light,
+.bg-color-light-2 {
+  background-color: var(--light-green-color) !important;
+}
+
+.color-green,
+.color-2 {
+  color: var(--green-color) !important;
+}
+
+.bg-orange,
+.bg-color-3 {
+  background-color: var(--orange-color) !important;
+}
+
+.bg-orange-light,
+.bg-color-light-3 {
+  background-color: var(--light-orange-color) !important;
+}
+
+.color-orange,
+.color-3 {
+  color: var(--orange-color) !important;
+}
+
+.bg-purple,
+.bg-color-4 {
+  background-color: var(--purple-color) !important;
+}
+
+.bg-purple-light,
+.bg-color-light-4 {
+  background-color: var(--light-puple-color) !important;
+}
+
+.color-purple,
+.color-4 {
+  color: var(--purple-color) !important;
+}
+
+.bg-pink,
+.bg-color-5 {
+  background-color: var(--pink-color) !important;
+}
+
+.color-pink,
+.color-5 {
+  color: var(--pink-color) !important;
+}
+
+.bg-indigo,
+.bg-color-6 {
+  background-color: var(--indigo-color) !important;
+}
+
+.color-6 {
+  color: var(--indigo-color) !important;
+}
+
+.bg-light-pink {
+  background-color: var(--light-pink) !important;
+}
+
+.text-green {
+  color: var(--text-green) !important;
+}
+
+.text-red {
+  color: var(--red-color) !important;
 }
 
 .dashboard-section .welcome {
@@ -1009,93 +1113,9 @@ footer a:hover {
   scale: 1.08;
 }
 
-.bg-blue,
-.bg-color-1 {
-  background-color: var(--blue-color) !important;
-}
-
-.bg-blue-light,
-.bg-color-light-1 {
-  background-color: var(--light-blue-color) !important;
-}
-
-.color-blue,
-.color-1 {
-  color: var(--blue-color) !important;
-}
-
-.bg-green,
-.bg-color-2 {
-  background-color: var(--green-color) !important;
-}
-
-.bg-green-light,
-.bg-color-light-2 {
-  background-color: var(--light-green-color) !important;
-}
-
-.color-green,
-.color-2 {
-  color: var(--green-color) !important;
-}
-
-.bg-orange,
-.bg-color-3 {
-  background-color: var(--orange-color) !important;
-}
-
-.bg-orange-light,
-.bg-color-light-3 {
-  background-color: var(--light-orange-color) !important;
-}
-
-.color-orange,
-.color-3 {
-  color: var(--orange-color) !important;
-}
-
-.bg-purple,
-.bg-color-4 {
-  background-color: var(--purple-color) !important;
-}
-
-.bg-purple-light,
-.bg-color-light-4 {
-  background-color: var(--light-puple-color) !important;
-}
-
-.color-purple,
-.color-4 {
-  color: var(--purple-color) !important;
-}
-
-.bg-pink,
-.bg-color-5 {
-  background-color: var(--pink-color) !important;
-}
-
-.color-pink,
-.color-5 {
-  color: var(--pink-color) !important;
-}
-
-.bg-indigo,
-.bg-color-6 {
-  background-color: var(--indigo-color) !important;
-}
-
-.color-6 {
-  color: var(--indigo-color) !important;
-}
-
-.bg-light-pink {
-  background-color: var(--light-pink) !important;
-}
-
-.text-green {
-  color: var(--text-green) !important;
-}
-
-.text-red {
-  color: var(--red-color) !important;
+.input-field-box {
+  padding: 30px 24px;
+  background-color: #fff;
+  border-radius: 14px;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
 }/*# sourceMappingURL=style.css.map */

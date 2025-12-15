@@ -89,7 +89,7 @@ if (isset($_GET['success'])) {
                         <div class="title-head">
                             <div class="row align-items-center">
                                 <div class="col-md-6">
-                                    <h2>Add User</h2>
+                                    <h2 class="common-title">Add User</h2>
                                 </div>
                                 <div class="col-md-6 text-end">
                                     <a href="users.php" class="btn btn-warning btn-sm">User List <i class="fa-solid fa-list"></i>

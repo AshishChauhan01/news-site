@@ -72,7 +72,7 @@ if (isset($_GET['error'])) {
                         <div class="title-head">
                             <div class="row align-items-center">
                                 <div class="col-md-6">
-                                    <h2>Update User</h2>
+                                    <h2 class="common-title">Update User</h2>
                                 </div>
                                 <div class="col-md-6 text-end">
                                     <a href="users.php" class="btn btn-warning btn-sm">User List <i class="fa-solid fa-list"></i>
