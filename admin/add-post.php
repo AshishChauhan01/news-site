@@ -97,7 +97,7 @@
                         <div class="right-container">
                             <div class="input-field-box">
                                 <div class="publish-fields">
-                                    <h2 class="common-subtitle left-border">SEO Settings</h2>
+                                    <h2 class="common-subtitle left-border">Publish</h2>
                                     <div>
                                         <label class="form-label">Status</label>
                                         <select name="" id="" class="form-select">
