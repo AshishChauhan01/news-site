@@ -4,7 +4,7 @@ include "header.php"; ?>
 <div class="dashboard-section section-padding min-height">
     <div class="container">
         <h2 class="common-title">Dashboard Overview</h2>
-        <p class="welcome">Welcome back <b>Ashish Chauhan</b>! Here's what's happening with your users today.</p>
+        <p class="section-content">Welcome back <b>Ashish Chauhan</b>! Here's what's happening with your users today.</p>
         <h3 class="sm-section-title">User Statistics</h3>
         <div class="dashboard-elements">
             <div class="row g-3 g-md-4">
@@ -283,10 +283,37 @@ include "header.php"; ?>
             <h3 class="sm-section-title">Quick Actions</h3>
             <div class="row g-3">
                 <div class="col-md-6 col-lg-3">
-                    <a href="#">
+                    <a href="add-post.php">
                         <div class="quick-action box-1">
                             <div class="icon bg-blue-light">
-                                <i class="ri-user-follow-line color-blue"></i>
+                                <i class="ri-file-add-line color-blue"></i>
+                            </div>
+                            <div class=" title-box">
+                                <p class="title">Add New Post</p>
+                                <p class="description">Create and publish a new post</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <a href="add-category.php">
+                        <div class="quick-action box-2">
+                            <div class="icon bg-green-light">
+                                <i class="ri-folder-add-line color-green"></i>
+
+                            </div>
+                            <div class="title-box">
+                                <p class="title">Add Category</p>
+                                <p class="description">Create a new content category</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <a href="add-user.php">
+                        <div class="quick-action box-3">
+                            <div class="icon bg-purple-light">
+                                <i class="ri-user-follow-line color-purple"></i>
                             </div>
                             <div class="title-box">
                                 <p class="title">Add New User</p>
@@ -296,10 +323,10 @@ include "header.php"; ?>
                     </a>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <a href="#">
-                        <div class="quick-action box-2">
-                            <div class="icon bg-green-light">
-                                <i class="ri-file-text-line color-green"></i>
+                    <a href="generate-report.php">
+                        <div class="quick-action box-4">
+                            <div class="icon bg-orange-light">
+                                <i class="ri-file-text-line color-orange"></i>
                             </div>
                             <div class="title-box">
                                 <p class="title">Generate Report</p>
@@ -309,10 +336,10 @@ include "header.php"; ?>
                     </a>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <a href="#">
-                        <div class="quick-action box-3">
-                            <div class="icon bg-purple-light">
-                                <i class="ri-settings-3-line color-purple"></i>
+                    <a href="system-settings.php">
+                        <div class="quick-action box-5">
+                            <div class="icon bg-light-pink">
+                                <i class="ri-settings-3-line color-pink"></i>
                             </div>
                             <div class="title-box">
                                 <p class="title">System Settings</p>
@@ -322,8 +349,8 @@ include "header.php"; ?>
                     </a>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <a href="#">
-                        <div class="quick-action box-4">
+                    <a href="export-data.php">
+                        <div class="quick-action box-6">
                             <div class="icon bg-orange-light">
                                 <i class="ri-download-2-line color-orange"></i>
                             </div>

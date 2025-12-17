@@ -97,7 +97,7 @@
                         <div class="right-container">
                             <div class="input-field-box">
                                 <div class="publish-fields">
-                                    <h2 class="common-subtitle left-border">Publish</h2>
+                                    <h2 class="common-subtitle left-border line-1">Publish</h2>
                                     <div>
                                         <label class="form-label">Status</label>
                                         <select name="" id="" class="form-select">
@@ -115,14 +115,16 @@
                                         </select>
                                     </div>
                                     <div class="mt-3">
-                                        <label class="form-label">Publish Date</label>
+                                        <label class="form-label d-flex align-items-center gap-1"><i class="ri-calendar-line fs-5"></i>
+                                            <P></P>Publish Date
+                                        </label>
                                         <input type="date" name="" id="" class="form-control">
                                     </div>
                                 </div>
                             </div>
                             <div class="input-field-box mt-4">
-                                <div class="publish-fields">
-                                    <h2 class="common-subtitle left-border">Category</h2>
+                                <div class="category-fields">
+                                    <h2 class="common-subtitle left-border line-2">Category</h2>
                                     <div>
                                         <select name="" id="" class="form-select">
                                             <option value="">Select a category</option>
@@ -132,10 +134,20 @@
                                 </div>
                             </div>
                             <div class="input-field-box mt-4">
-                                <div class="publish-fields">
-                                    <h2 class="common-subtitle left-border">Tags</h2>
-                                    <input type="text" placeholder="Type and press Enter to add tags.." class="form-control">
+                                <div class="tags-fields">
+                                    <h2 class="common-subtitle left-border line-3">Tags</h2>
+
+                                    <div class="tag-card">
+                                        <div class="tag-input-wrapper" id="tagWrapper">
+                                            <input type="text" placeholder="Type and press Enter to add tags.." class="form-control">
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="post-buttons mt-3">
+                                <button type="submit" class="blue-btn"><i class="ri-send-plane-fill fs-4"></i> Publish Post</button>
+                                <button type="submit" class="blue-btn"><i class="ri-save-3-line fs-4"></i>Save as Draft</button>
+                                <button type="submit" class="blue-btn"><i class="ri-eye-line fs-4"></i> Preview</button>
                             </div>
                         </div>
                     </div>

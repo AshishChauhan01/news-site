@@ -82,3 +82,38 @@ textarea.addEventListener("input", () => {
   count.textContent = textarea.value.length;
 });
 
+const wrapper = document.getElementById("tagWrapper");
+  const input = wrapper.querySelector("input");
+
+  input.addEventListener("keydown", function (e) {
+    if ((e.key === "Enter" || e.key === ",") && input.value.trim() !== "") {
+      e.preventDefault();
+
+    
+      const value = input.value.replace(/,+$/, "").trim();
+
+      if (value !== "") {
+        addTag(value);
+      }
+
+      input.value = "";
+    }
+  });
+
+  function addTag(text) {
+    const tag = document.createElement("span");
+    tag.className = "tag";
+    tag.innerHTML = `${text} <span class="remove">×</span>`;
+
+    tag.querySelector(".remove").addEventListener("click", () => {
+      tag.remove();
+    });
+
+    wrapper.insertBefore(tag, input);
+  }
+
+  wrapper.querySelectorAll(".remove").forEach(btn => {
+    btn.addEventListener("click", function () {
+      this.parentElement.remove();
+    });
+  });
