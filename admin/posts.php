@@ -92,6 +92,41 @@ include "header.php"; ?>
                 </div>
             </form>
         </div>
+        <div class="posts-table mt-5">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Post Title</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>stats</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>The Future of Artificial Intelligence in 2025</td>
+                        <td>John Smith</td>
+                        <td>Technology</td>
+                        <td><span class="status">Published</span></td>
+                        <td class="stats">
+                            <span class="views"><i class="ri-eye-line"></i>&nbsp;15,420&nbsp;</span>
+                            <span class="comments"><i class="ri-chat-4-line"></i>&nbsp;234&nbsp;</span>
+                            <span class="likes"><i class="ri-heart-line"></i>&nbsp;1,892&nbsp;</span>
+                        </td>
+                        <td>Jan 15, 2025</td>
+                        <td class="actions">
+                            <a href="#"><i class="ri-eye-line"></i></a>
+                            <a href="#"><i class="ri-file-edit-line"></i></a>
+                            <a href="#"><i class="ri-delete-bin-line"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
     </div>
 </div>
 

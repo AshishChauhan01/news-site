@@ -1509,3 +1509,72 @@ textarea {
     }
   }
 }
+
+.posts-table {
+  overflow-x: scroll;
+  table {
+    width: 100%;
+    // border: 1px solid rgba($color: #ced4da, $alpha: 0.4);
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    thead {
+      background-color: #f8fafc;
+      color: var(--dark-slate-color);
+      th {
+        padding: 16px 24px;
+      }
+    }
+    tbody {
+      tr {
+        background-color: #fff;
+        td {
+          padding: 16px 24px;
+          font-size: 16px;
+          color: var(--dark-slate-color);
+          &:first-child {
+            min-width: 200px;
+          }
+          &.stats {
+            min-width: 240px;
+          }
+          &:not(:first-child),
+          a {
+            color: var(--slate-color);
+            font-size: 14px;
+          }
+          &.actions {
+            min-width: 160px;
+
+            a {
+              display: inline-block;
+              i {
+                padding: 6px;
+                border-radius: 8px;
+              }
+              &:hover {
+                &:first-child {
+                  i {
+                    background-color: var(--light-blue-color);
+                    color: var(--blue-color);
+                  }
+                }
+                &:nth-child(2) {
+                  i {
+                    background-color: var(--light-green-color);
+                    color: var(--green-color);
+                  }
+                }
+                &:last-child {
+                  i {
+                    background-color: var(--light-pink);
+                    color: var(--red-color);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
