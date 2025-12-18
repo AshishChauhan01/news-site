@@ -1351,8 +1351,25 @@ textarea:focus {
 }
 .filter-section .filters .search-box {
   width: 60%;
+  position: relative;
 }
 .filter-section .filters .search-box input {
   width: 100%;
-  padding: 12px 12px 12px 40px !important;
+  padding-left: 40px !important;
+  font-size: 16px !important;
+}
+.filter-section .filters .search-box .search-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  text-align: center;
+}
+.filter-section .filters .search-box .search-icon i {
+  color: var(--slate-color);
+  opacity: 0.8;
+  font-size: 18px;
+}
+.filter-section .filters .others-filters {
+  width: 40%;
 }/*# sourceMappingURL=style.css.map */

@@ -88,6 +88,25 @@ include "header.php"; ?>
                 <div class="filters">
                     <div class="search-box">
                         <input type="text" name="search_post" placeholder="Search posts by title, author, or category..." class="form-control" />
+                        <div class="search-icon">
+                            <i class="ri-search-line"></i>
+                        </div>
+                    </div>
+                    <div class="others-filters">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="status-box">
+                                    <select name="post-status" id="" class="form-select">
+                                        <option value="" selected>All Status</option>
+                                        <option value="" selected>Published</option>
+                                        <option value="" selected>Draft</option>
+                                        <option value="" selected>Scheduled</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4"></div>
+                        </div>
                     </div>
                 </div>
             </form>
