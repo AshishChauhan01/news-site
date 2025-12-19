@@ -117,3 +117,33 @@ const wrapper = document.getElementById("tagWrapper");
       this.parentElement.remove();
     });
   });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const emojiInput = document.getElementById("emojiInput");
+  const pickerWrapper = document.getElementById("emojiPicker");
+  const picker = pickerWrapper.querySelector("emoji-picker");
+
+  // open picker
+  emojiInput.addEventListener("click", (e) => {
+    e.stopPropagation(); // 🔥 STOP CLOSE
+    pickerWrapper.classList.remove("d-none");
+  });
+
+  // prevent closing when clicking inside picker
+  pickerWrapper.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+
+  // select emoji
+  picker.addEventListener("emoji-click", (e) => {
+    emojiInput.value = e.detail.unicode;
+    pickerWrapper.classList.add("d-none");
+  });
+
+  // close on outside click
+  document.addEventListener("click", () => {
+    pickerWrapper.classList.add("d-none");
+  });
+});
+

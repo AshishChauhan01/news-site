@@ -1666,3 +1666,55 @@ textarea,
     }
   }
 }
+.modal {
+  &.add-category-modal {
+    .modal-content {
+      border-radius: 12px;
+      overflow: hidden;
+      .modal-header {
+        color: #fff;
+        background: linear-gradient(
+          150deg,
+          #195dfc 0%,
+          #5a4bff 80%,
+          #7a5cff 100%
+        );
+        h2 {
+          color: #fff;
+          font-size: 20px;
+        }
+        // .btn-close {
+        //   background-color: #7163f9;
+        //   color: #fff;
+        // }
+      }
+      .modal-body {
+        input {
+          min-height: 45px;
+        }
+      }
+    }
+  }
+}
+
+.emoji-field {
+  position: relative;
+  max-width: 400px;
+}
+
+.emoji-picker-wrapper {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1050;
+  margin-top: 6px;
+}
+
+emoji-picker {
+  --background: #1e1e1e;
+  --input-background: #2a2a2a;
+  --input-font-color: #fff;
+  --category-icon-active-color: #3b82f6;
+  border-radius: 12px;
+  height: 420px;
+}

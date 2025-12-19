@@ -7,6 +7,8 @@ if (!isset($login_page)) {
         </div>
     </footer>
 <?php } ?>
+<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js">
+</script>
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/js/custom.js"></script>
 <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
