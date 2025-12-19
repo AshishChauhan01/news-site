@@ -98,20 +98,24 @@ include "header.php"; ?>
                                 <div class="status-box">
                                     <select name="post-status" id="" class="form-select">
                                         <option value="" selected>All Status</option>
-                                        <option value="" selected>Published</option>
-                                        <option value="" selected>Draft</option>
-                                        <option value="" selected>Scheduled</option>
+                                        <option value="">Published</option>
+                                        <option value="">Draft</option>
+                                        <option value="">Scheduled</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <a href="#" class="filter-btn form-control"><i class="ri-filter-line"></i>&nbsp;Filter</a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="#" class="filter-btn form-control"><i class="ri-export-line"></i>&nbsp;Export</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="posts-table mt-5">
+        <div class="posts-table mt-4">
             <table>
                 <thead>
                     <tr>
@@ -125,17 +129,52 @@ include "header.php"; ?>
                     </tr>
                 </thead>
                 <tbody>
+
                     <tr>
                         <td>The Future of Artificial Intelligence in 2025</td>
                         <td>John Smith</td>
                         <td>Technology</td>
-                        <td><span class="status">Published</span></td>
+                        <td><span class="status published">Published</span></td>
                         <td class="stats">
                             <span class="views"><i class="ri-eye-line"></i>&nbsp;15,420&nbsp;</span>
                             <span class="comments"><i class="ri-chat-4-line"></i>&nbsp;234&nbsp;</span>
                             <span class="likes"><i class="ri-heart-line"></i>&nbsp;1,892&nbsp;</span>
                         </td>
-                        <td>Jan 15, 2025</td>
+                        <td><i class="ri-calendar-line"></i>&nbsp;Jan 15, 2025</td>
+                        <td class="actions">
+                            <a href="#"><i class="ri-eye-line"></i></a>
+                            <a href="#"><i class="ri-file-edit-line"></i></a>
+                            <a href="#"><i class="ri-delete-bin-line"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>10 Healthy Habits to Transform Your Life</td>
+                        <td>Sarah Johnson</td>
+                        <td>Health & Fitness</td>
+                        <td><span class="status draft">Draft</span></td>
+                        <td class="stats">
+                            <span class="views"><i class="ri-eye-line"></i>&nbsp;12,350&nbsp;</span>
+                            <span class="comments"><i class="ri-chat-4-line"></i>&nbsp;189&nbsp;</span>
+                            <span class="likes"><i class="ri-heart-line"></i>&nbsp;1,456&nbsp;</span>
+                        </td>
+                        <td><i class="ri-calendar-line"></i>&nbsp;Jan 15, 2025</td>
+                        <td class="actions">
+                            <a href="#"><i class="ri-eye-line"></i></a>
+                            <a href="#"><i class="ri-file-edit-line"></i></a>
+                            <a href="#"><i class="ri-delete-bin-line"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>The Future of Artificial Intelligence in 2025</td>
+                        <td>John Smith</td>
+                        <td>Technology</td>
+                        <td><span class="status scheduled">Scheduled</span></td>
+                        <td class="stats">
+                            <span class="views"><i class="ri-eye-line"></i>&nbsp;15,420&nbsp;</span>
+                            <span class="comments"><i class="ri-chat-4-line"></i>&nbsp;234&nbsp;</span>
+                            <span class="likes"><i class="ri-heart-line"></i>&nbsp;1,892&nbsp;</span>
+                        </td>
+                        <td><i class="ri-calendar-line"></i>&nbsp;Jan 15, 2025</td>
                         <td class="actions">
                             <a href="#"><i class="ri-eye-line"></i></a>
                             <a href="#"><i class="ri-file-edit-line"></i></a>
@@ -143,7 +182,20 @@ include "header.php"; ?>
                         </td>
                     </tr>
                 </tbody>
-                <tfoot></tfoot>
+                <tfoot>
+                    <tr>
+                        <td>
+                            <div class="showing-post-counting">
+                                Showing <span>1</span> to <span>8</span> of <span>8</span> posts
+                            </div>
+                        </td>
+                        <td>
+                            <div class="pagination">
+
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>

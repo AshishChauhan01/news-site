@@ -19,6 +19,7 @@
   --pink-color: #e60076;
   --light-pink: #ffe2e2;
   --indigo-color: #584efc;
+  --yellow-color: #a65f00;
 }
 
 body {
@@ -841,11 +842,13 @@ label {
 }
 input,
 select,
-textarea {
+textarea,
+.filter-btn {
   border-radius: 8px !important;
   padding: 10px 12px !important;
   font-size: 14px !important;
-  &:focus {
+  &:focus,
+  &:hover {
     border: 2px solid var(--main-color) !important;
     box-shadow: none !important;
   }
@@ -1492,6 +1495,7 @@ textarea {
 
 .filter-section {
   margin-top: 30px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
   .filters {
     display: flex;
     align-items: center;
@@ -1500,6 +1504,7 @@ textarea {
     background-color: #fff;
     padding: 20px;
     border-radius: 14px;
+    min-height: 90px;
     .search-box {
       width: 60%;
       position: relative;
@@ -1523,7 +1528,12 @@ textarea {
     }
     .others-filters {
       width: calc(100% - 60%);
-      .status-box {
+      color: var(--slate-color);
+      .filter-btn {
+        text-align: center;
+        i {
+          font-size: 16px;
+        }
       }
     }
   }
@@ -1531,14 +1541,17 @@ textarea {
 
 .posts-table {
   overflow-x: scroll;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  border: 1px solid rgba($color: #ced4da, $alpha: 0.4);
+  border-radius: 16px;
+  overflow: hidden;
   table {
     width: 100%;
-    // border: 1px solid rgba($color: #ced4da, $alpha: 0.4);
-    border-radius: 16px;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
     thead {
       background-color: #f8fafc;
       color: var(--dark-slate-color);
+      border-bottom: 2px solid rgba($color: #ced4da, $alpha: 0.3);
+
       th {
         padding: 16px 24px;
       }
@@ -1546,6 +1559,7 @@ textarea {
     tbody {
       tr {
         background-color: #fff;
+        border-top: 1px solid rgba($color: #ced4da, $alpha: 0.3);
         td {
           padding: 16px 24px;
           font-size: 16px;
@@ -1555,6 +1569,24 @@ textarea {
           }
           &.stats {
             min-width: 240px;
+          }
+          .status {
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            &.published {
+              background-color: var(--light-green-color);
+              color: var(--green-color);
+            }
+            &.draft {
+              background-color: var(--light-orange-color);
+              color: var(--yellow-color);
+            }
+            &.scheduled {
+              background-color: var(--light-blue-color);
+              color: var(--blue-color);
+            }
           }
           &:not(:first-child),
           a {
@@ -1593,6 +1625,18 @@ textarea {
             }
           }
         }
+        &:hover {
+          background-color: #f8fafc;
+        }
+      }
+    }
+    tfoot {
+      background-color: #f8fafc;
+      color: var(--dark-slate-color);
+      border-top: 2px solid rgba(206, 212, 218, 0.3);
+      .showing-post-counting {
+        padding: 16px 24px;
+        color: var(--slate-color);
       }
     }
   }

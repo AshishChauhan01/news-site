@@ -19,6 +19,7 @@
   --pink-color: #e60076;
   --light-pink: #ffe2e2;
   --indigo-color: #584efc;
+  --yellow-color: #a65f00;
 }
 
 body {
@@ -740,14 +741,19 @@ label i {
 
 input,
 select,
-textarea {
+textarea,
+.filter-btn {
   border-radius: 8px !important;
   padding: 10px 12px !important;
   font-size: 14px !important;
 }
-input:focus,
+input:focus, input:hover,
 select:focus,
-textarea:focus {
+select:hover,
+textarea:focus,
+textarea:hover,
+.filter-btn:focus,
+.filter-btn:hover {
   border: 2px solid var(--main-color) !important;
   box-shadow: none !important;
 }
@@ -1339,6 +1345,7 @@ textarea:focus {
 
 .filter-section {
   margin-top: 30px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 }
 .filter-section .filters {
   display: flex;
@@ -1348,6 +1355,7 @@ textarea:focus {
   background-color: #fff;
   padding: 20px;
   border-radius: 14px;
+  min-height: 90px;
 }
 .filter-section .filters .search-box {
   width: 60%;
@@ -1372,24 +1380,36 @@ textarea:focus {
 }
 .filter-section .filters .others-filters {
   width: 40%;
+  color: var(--slate-color);
 }
+.filter-section .filters .others-filters .filter-btn {
+  text-align: center;
+}
+.filter-section .filters .others-filters .filter-btn i {
+  font-size: 16px;
+}
+
 .posts-table {
   overflow-x: scroll;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  border: 1px solid rgba(206, 212, 218, 0.4);
+  border-radius: 16px;
+  overflow: hidden;
 }
 .posts-table table {
   width: 100%;
-  border-radius: 16px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 }
 .posts-table table thead {
   background-color: #f8fafc;
   color: var(--dark-slate-color);
+  border-bottom: 2px solid rgba(206, 212, 218, 0.3);
 }
 .posts-table table thead th {
   padding: 16px 24px;
 }
 .posts-table table tbody tr {
   background-color: #fff;
+  border-top: 1px solid rgba(206, 212, 218, 0.3);
 }
 .posts-table table tbody tr td {
   padding: 16px 24px;
@@ -1401,6 +1421,24 @@ textarea:focus {
 }
 .posts-table table tbody tr td.stats {
   min-width: 240px;
+}
+.posts-table table tbody tr td .status {
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.posts-table table tbody tr td .status.published {
+  background-color: var(--light-green-color);
+  color: var(--green-color);
+}
+.posts-table table tbody tr td .status.draft {
+  background-color: var(--light-orange-color);
+  color: var(--yellow-color);
+}
+.posts-table table tbody tr td .status.scheduled {
+  background-color: var(--light-blue-color);
+  color: var(--blue-color);
 }
 .posts-table table tbody tr td:not(:first-child),
 .posts-table table tbody tr td a {
@@ -1428,4 +1466,16 @@ textarea:focus {
 .posts-table table tbody tr td.actions a:hover:last-child i {
   background-color: var(--light-pink);
   color: var(--red-color);
+}
+.posts-table table tbody tr:hover {
+  background-color: #f8fafc;
+}
+.posts-table table tfoot {
+  background-color: #f8fafc;
+  color: var(--dark-slate-color);
+  border-top: 2px solid rgba(206, 212, 218, 0.3);
+}
+.posts-table table tfoot .showing-post-counting {
+  padding: 16px 24px;
+  color: var(--slate-color);
 }/*# sourceMappingURL=style.css.map */
