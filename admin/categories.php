@@ -257,8 +257,8 @@ include "header.php"; ?>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <!-- <label for="" class="form-label">Category Icon (Emoji)*</label>
-                            <input type="text" class="form-control" id="emojiInput" placeholder="e.g., 😀"
+                            <label for="" class="form-label">Category Icon (Emoji)*</label>
+                            <!--<input type="text" class="form-control" id="emojiInput" placeholder="e.g., 😀"
                                 maxlength="2" required>
                             <div class="form-text">
                                 Please enter a single emoji only.
