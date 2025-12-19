@@ -1521,6 +1521,12 @@ textarea:hover,
 .modal.add-category-modal .modal-content .modal-body input {
   min-height: 45px;
 }
+.modal.add-category-modal .modal-content .modal-footer {
+  border-top: 0;
+}
+.modal.add-category-modal .modal-content .modal-footer button.blue-btn {
+  width: 60%;
+}
 
 .emoji-field {
   position: relative;
