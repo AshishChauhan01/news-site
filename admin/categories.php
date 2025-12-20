@@ -215,81 +215,93 @@ include "header.php"; ?>
 <div class="modal fade add-category-modal" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title common-title" id="exampleModalLabel">Add New Category</h2>
-                <button type="button" class="btn-close  btn-close-white" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"></span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label for="" class="form-label">Category Name *</label>
-                    <input type="text" class="form-control" placeholder="e.g., Technology, Lifestyle, Business" required>
-                </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">URL Slug *</label>
-                    <input type="text" class="form-control" placeholder="e.g., technology, lifestyle, business" required>
-                    <div class="form-text">*This will be used in the URL: /category/slug</div>
+            <form action="#">
+                <div class="modal-header">
+                    <h2 class="modal-title common-title" id="exampleModalLabel">Add New Category</h2>
+                    <button type="button" class="btn-close  btn-close-white" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
                 </div>
 
-                <div class="mb-3">
-                    <label for="" class="form-label">Description</label>
-                    <textarea name="" id="" placeholder="Brief description of this category..." class="form-control" rows="4"></textarea>
-                </div>
-                <div class="mb-3">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="" class="form-label">Category Color</label>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Category Name *</label>
+                        <input type="text" class="form-control" placeholder="e.g., Technology, Lifestyle, Business" name="cat_name" id="cat_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">URL Slug *</label>
+                        <input type="text" class="form-control" placeholder="e.g., technology, lifestyle, business" name="cat-slug" id="cat-slug" required>
+                        <div class="form-text">*This will be used in the URL: /category/slug</div>
+                    </div>
 
-                            <div class="d-flex align-items-center gap-3">
-                                <input type="color"
-                                    id="colorPicker"
-                                    class="form-control form-control-color"
-                                    value="#3371d7"
-                                    title="Choose color">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Description</label>
+                        <textarea placeholder="Brief description of this category..." class="form-control" name="cat-description" id="cat-description" rows="4"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Category Color</label>
 
-                                <input type="text"
-                                    id="colorHex"
-                                    class="form-control"
-                                    value="#3371d7"
-                                    placeholder="#000000">
+                                <div class="d-flex align-items-center gap-3">
+                                    <input type="color"
+                                        id="colorPicker"
+                                        class="form-control form-control-color"
+                                        value="#3B82F6"
+                                        name="cat-color"
+                                        title="Choose color">
+
+                                    <input type="text"
+                                        id="colorCode"
+                                        class=" form-control"
+                                        value="#3B82F6"
+                                        placeholder="#000000">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Category Icon (Emoji)*</label>
+                                <div class="emoji-field">
+                                    <input
+                                        type="text"
+                                        id="emojiInput"
+                                        class="form-control"
+                                        placeholder="Select emoji"
+                                        readonly>
+                                    <input
+                                        type="hidden"
+                                        name="cat-emoji"
+                                        id="emojiValue">
+
+                                    <div class="emoji-picker-wrapper d-none" id="emojiPicker">
+                                        <emoji-picker></emoji-picker>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="" class="form-label">Category Icon (Emoji)*</label>
-                            <!--<input type="text" class="form-control" id="emojiInput" placeholder="e.g., 😀"
-                                maxlength="2" required>
-                            <div class="form-text">
-                                Please enter a single emoji only.
-                            </div> -->
-
-                            <div class="emoji-field">
-                                <input
-                                    type="text"
-                                    id="emojiInput"
-                                    class="form-control"
-                                    placeholder="Select emoji"
-                                    readonly>
-
-                                <div class="emoji-picker-wrapper d-none" id="emojiPicker">
-                                    <emoji-picker></emoji-picker>
+                    </div>
+                    <div class="mb-2">
+                        <div class="cat-preview-box">
+                            <h4>Preview</h4>
+                            <div class="cat-content">
+                                <div class="cat-icon" style="background-color:#3B82F6;">
+                                    😀
+                                </div>
+                                <div>
+                                    <p class="cat-name">Category Name</p>
+                                    <p class="cat-slug">/category-slug</p>
+                                    <p class="cat-description">Category description will appear here...</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="modal-footer">
-
-                    <button type="button" class="btn blue-btn">Add Category</button>
-
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-
-
+                    <button type="submit" class="btn blue-btn">Add Category</button>
+                    <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Cancel</button>
                 </div>
-            </div>
         </div>
+        </form>
     </div>
-    <!-- End model -->
-    <?php include "footer.php"; ?>
+</div>
+<!-- End model -->
+<?php include "footer.php"; ?>

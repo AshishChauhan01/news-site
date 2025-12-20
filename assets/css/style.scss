@@ -4,6 +4,7 @@
 :root {
   --main-color: #1453f2;
   --gray-color: #6a7282;
+  --light-gray-color: #f8fafc;
   --slate-color: #45556c;
   --dark-slate-color: #0f172b;
   --blue-color: #3a75ff;
@@ -1557,7 +1558,7 @@ textarea,
   table {
     width: 100%;
     thead {
-      background-color: #f8fafc;
+      background-color: var(--light-gray-color);
       color: var(--dark-slate-color);
       border-bottom: 2px solid rgba($color: #ced4da, $alpha: 0.3);
 
@@ -1639,12 +1640,12 @@ textarea,
           }
         }
         &:hover {
-          background-color: #f8fafc;
+          background-color: var(--light-gray-color);
         }
       }
     }
     tfoot {
-      background-color: #f8fafc;
+      background-color: var(--light-gray-color);
       color: var(--dark-slate-color);
       border-top: 2px solid rgba(206, 212, 218, 0.3);
       .showing-post-counting {
@@ -1668,6 +1669,9 @@ textarea,
 }
 .modal {
   &.add-category-modal {
+    .modal-dialog {
+      min-height: calc(100vh - 90px);
+    }
     .modal-content {
       border-radius: 12px;
       overflow: hidden;
@@ -1692,12 +1696,28 @@ textarea,
         input {
           min-height: 45px;
         }
+        input[type="color"] {
+          padding: 2px;
+        }
       }
       .modal-footer {
         border-top: 0;
+        padding-top: 0px;
+        padding-bottom: 30px;
         button {
+          flex: 1;
+          border-radius: 12px;
+          padding: 8px 16px;
+          transition: all 0.3s ease-in-out;
           &.blue-btn {
             width: calc(100% - 40%);
+            flex: 2;
+          }
+          &.btn-cancel {
+            border: 1px solid #ced4da;
+          }
+          &:hover {
+            scale: 0.95;
           }
         }
       }
@@ -1711,11 +1731,10 @@ textarea,
 }
 
 .emoji-picker-wrapper {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1050;
   margin-top: 6px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 emoji-picker {
@@ -1725,4 +1744,46 @@ emoji-picker {
   --category-icon-active-color: #3b82f6;
   border-radius: 12px;
   height: 420px;
+}
+
+.cat-preview-box {
+  padding: 24px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  background-color: var(--light-gray-color);
+  h4 {
+    font-size: 16px;
+    color: var(--slate-color);
+  }
+  .cat-content {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 12px;
+    .cat-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: #fff;
+    }
+    p {
+      margin-bottom: 0px;
+      &.cat-name {
+        color: var(--dark-slate-color);
+      }
+      &.cat-slug {
+        color: var(--slate-color);
+        opacity: 0.75;
+      }
+      &.cat-description {
+        color: var(--slate-color);
+        opacity: 0.85;
+      }
+    }
+  }
 }
