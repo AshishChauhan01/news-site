@@ -1,6 +1,18 @@
 <?php include('header.php'); ?>
 <?php
-if (isset($_POST['add_category'])) {
+if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
+    echo "<div class='alert alert-danger'>Invalid Request</div>";
+    exit();
+}
+$cat_id = intval($_GET['id']);
+
+$fetch_cat_query = "SELECT * FROM categories WHERE id = '$cat_id'";
+$get_cat = mysqli_query($conn, $fetch_cat_query);
+$cat = mysqli_fetch_assoc($get_cat);
+
+if (isset($_POST['update_category'])) {
+    $category_id = $_POST['category_id'];
+
     $cat_name = mysqli_real_escape_string($conn, trim($_POST['category_name']));
     $cat_name_lower =  strtolower($cat_name);
     $slug_by_name = preg_replace('/\s+/', '-', preg_replace('/[^a-z0-9\s-]/', '', $cat_name_lower));
@@ -10,20 +22,22 @@ if (isset($_POST['add_category'])) {
 
     $final_cat_slug =  !empty($cat_slug) ?  $cat_slug : $slug_by_name;
 
-    $get_dup_cat = "SELECT id FROM categories WHERE category_name = '$cat_name' OR category_slug =  '$final_cat_slug'";
+    $get_dup_cat = "SELECT id FROM categories WHERE (category_name = '$cat_name' OR category_slug =  '$final_cat_slug') AND id != '$category_id'";
+
     $fetch_dup_cat = mysqli_query($conn, $get_dup_cat);
     if (mysqli_num_rows($fetch_dup_cat) > 0) {
-        header('location:' . $_SERVER['PHP_SELF'] . '?error=duplicate');
+        header('location:' . $_SERVER['PHP_SELF'] . '?error=duplicate&id=' . $category_id);
         exit();
     }
 
-    $query = "INSERT INTO categories (`category_name`, `category_slug`) VALUES('$cat_name', '$final_cat_slug')";
+    $query = "UPDATE categories SET category_name = '$cat_name', category_slug = '$final_cat_slug' WHERE id = '$category_id'";
     $ext_query = mysqli_query($conn, $query);
+
     if ($ext_query) {
-        header('location:' . $_SERVER['PHP_SELF'] . '?success=added');
+        header('location:' . $_SERVER['PHP_SELF'] . '?success=updated&id=' . $category_id);
         exit();
     } else {
-        header('location:' . $_SERVER['PHP_SELF'] . '?error=not-added');
+        header('location:' . $_SERVER['PHP_SELF'] . '?error=not-updated&id=' . $category_id);
         exit();
     }
 }
@@ -31,13 +45,13 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
     $alert_text = "";
     $class_name = "";
     if (isset($_GET['success'])) {
-        $alert_text = "😊 Category added successfully.";
+        $alert_text = "😊 Category updated successfully.";
         $class_name = "alert-success";
     }
     if (isset($_GET['error'])) {
         $class_name = "alert-danger";
-        if ($_GET['error'] == "not-added") {
-            $alert_text = "🙄 Category not added.";
+        if ($_GET['error'] == "not-updated") {
+            $alert_text = "🙄 Category not updated.";
         }
         if ($_GET['error'] == "duplicate") {
             $alert_text = "🙄 Category or slug already exists. please use a separate category.";
@@ -58,7 +72,7 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                         <div class="title-head">
                             <div class="row align-items-center">
                                 <div class="col-md-6">
-                                    <h2 class="common-title">Add Category</h2>
+                                    <h2 class="common-title">Update Category</h2>
                                 </div>
                                 <div class="col-md-6 text-end">
                                     <a href="categories.php" class="btn btn-warning btn-sm">Categories List <i class="fa-solid fa-list"></i>
@@ -67,20 +81,19 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                             </div>
                         </div>
 
-                        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" class="form">
+                        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']) . '?id=' . $cat_id; ?>" method="POST" class="form">
                             <div class="mb-3">
                                 <label for="category_name" class="form-label">Category Name <sup class="text-danger fw-bold">*</sup></label>
-                                <input type="text" name="category_name" id="category_name" placeholder="Enter Category Name" class="form-control" required>
+                                <input type="text" name="category_name" id="category_name" placeholder="Enter Category Name" class="form-control" value="<?= $cat['category_name']; ?>" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="category_slug" class="form-label">Category Slug</label>
-                                <input type="text" name="category_slug" id="category_slug" placeholder="Enter Category Slug" class="form-control">
-                                <div class="form-text">Optional. Only use this if you want a custom slug.</div>
+                                <input type="text" name="category_slug" id="category_slug" placeholder="Enter Category Slug" class="form-control" value="<?= $cat['category_slug']; ?>">
                             </div>
-
+                            <input type="hidden" name="category_id" value="<?= $cat['id']; ?>">
                             <div>
-                                <button type="submit" name="add_category" class="btn btn-success btn-md w-100">Add Category</button>
+                                <button type="submit" name="update_category" class="btn btn-success btn-md w-100">Update Category</button>
                             </div>
                         </form>
                     </div>
@@ -89,11 +102,11 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                     <div class="sticky-effect">
                         <div class="section-wrapper">
                             <div class="title-head">
-                                <h3>Latest Added Categories</h3>
+                                <h3>Latest Updated Categories</h3>
                             </div>
                             <ul>
                                 <?php
-                                $latest_added_cat = "SELECT * FROM categories LIMIT 4";
+                                $latest_added_cat = "SELECT * FROM categories ORDER BY updated_at DESC LIMIT 4";
                                 $fetch_latest_rec = mysqli_query($conn, $latest_added_cat);
                                 if (mysqli_num_rows($fetch_latest_rec) > 0) {
                                     while ($rows = mysqli_fetch_assoc($fetch_latest_rec)) {
