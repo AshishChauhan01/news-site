@@ -1,159 +1,83 @@
 <?php include "header.php"; ?>
-<section class="add-post-page section-padding min-height">
+<section class="news-section section-padding min-height">
     <div class="container">
-        <div class="page-title">
-            <h2 class="common-title">Create New Post</h2>
-            <p>Share your story with the world. Fill in the details below to publish your post.</p>
-        </div>
-    </div>
-    <div class="add-post-form">
+        <div class="mt-2">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="section-wrapper">
+                        <div class="title-head">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <h2 class="common-title">Add New Post</h2>
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <a href="posts.php" class="btn btn-warning btn-sm">Posts <i class="fa-solid fa-list"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" class="form">
+                            <div class="mb-3">
 
-        <div class="container">
-            <form action="">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="left-container">
-                            <div class="input-field-box">
                                 <label for="post_title" class="form-label">Post Title</label>
-                                <input type="text" name="post_title" id="post_title" placeholder="Enter your post title.." class="form-control">
-                            </div>
-                            <div class="input-field-box mt-4">
-                                <div class="upload-card">
-                                    <label class="form-label">Featured Image</label>
-                                    <div class="upload-box" id="uploadBox">
-                                        <input type="file" id="fileUpload" accept="image/*" hidden>
-                                        <div class="upload-content" id="uploadContent">
-                                            <svg class="upload-icon" viewBox="0 0 24 24">
-                                                <path d="M12 16V4M12 4L7 9M12 4l5 5" />
-                                                <path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
-                                            </svg>
-                                            <p class="upload-text">Click to upload or drag and drop</p>
-                                            <span class="upload-hint">PNG, JPG, GIF up to 10MB</span>
-                                            <button type="button" class="blue-btn" id="chooseFile">
-                                                Choose File
-                                            </button>
-                                        </div>
-
-                                        <!-- Preview -->
-                                        <div class="image-preview" id="imagePreview">
-                                            <img id="previewImg" alt="Preview">
-                                            <button type="button" class="remove-btn" id="removeImage">Remove</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                <input type="text" name="post_title" placeholder="Write post title.." class="form-control" id="post_title" required>
 
                             </div>
-                            <div class="input-field-box mt-4">
-                                <div class="editor-card">
-                                    <div class="editor-header">
-                                        <label class="form-label">Post Content</label>
-                                        <div class="editor-tools">
-                                            <button data-action="bold"><b>B</b></button>
-                                            <button data-action="italic"><i>I</i></button>
-                                            <button data-action="ul">• • •</button>
-                                            <button data-action="link">🔗</button>
-                                            <button data-action="align">≡</button>
-                                        </div>
-                                    </div>
-
-                                    <div class="editor-body"
-                                        contenteditable="true"
-                                        id="editor"
-                                        placeholder="Write your content here...">
-                                    </div>
-
-                                    <div class="editor-footer">
-                                        <span id="counter">0 words • 0 characters</span>
-                                        <span class="hint">Markdown supported</span>
-                                    </div>
-                                </div>
+                            <div class=" mb-3">
+                                <label for="post_description" class="form-label">Description</label>
+                                <textarea name="post_description" id="post_description" rows="5" class="form-control"></textarea>
                             </div>
 
-                            <div class="input-field-box mt-4">
-                                <div class="seo-fields">
-                                    <h2 class="common-subtitle left-border">SEO Settings</h2>
-                                    <div>
-                                        <label class="form-label">
-                                            Meta Description
-                                        </label>
-                                        <textarea id="metaDescription"
-                                            maxlength="160"
-                                            placeholder="Brief description for search engines.."
-                                            class="form-control"
-                                            rows="3">
-                                        </textarea>
-                                        <p><span id="metaCount">0</span>/160 characters</p>
-                                    </div>
-                                    <div class="mt-3">
-                                        <label class="form-label">Url Slug</label>
-                                        <input type="text" placeholder="your-post-url-slug" name="post_slug" class="form-control">
-                                    </div>
-
-                                </div>
+                            <div class="mb-3">
+                                <label for="post_category" class="form-label">Post Category</label>
+                                <select name="post_category" id="post_category" class="form-select">
+                                    <option selected disabled>Select post category</option>
+                                    <option value="">Category NAme</option>
+                                </select>
                             </div>
+
+                            <div class="mb-4">
+                                <label for="post_thumbnail" class="form-label">Post Thumbnail</label>
+                                <input type="file" name="post_thumbnail" id="post_thumbnail" class="form-control" required>
+                            </div>
+                            <div>
+                                <button type="submit" name="add_post" class="btn btn-success btn-md w-100">Add Post</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="sticky-effect">
+                        <div class="section-wrapper">
+                            <div class="title-head">
+                                <h3>Latest Added Posts</h3>
+                            </div>
+                            <!-- <ul>
+                                <?php if (mysqli_num_rows($latest_records) > 0) {
+                                    while ($rows = mysqli_fetch_assoc($latest_records)) {
+                                ?>      
+                                        <li>
+                                            <div>
+                                                <span>
+                                                    <?php echo $rows['first_name'] . "&nbsp;" . $rows['last_name'] ?>
+                                                </span>
+                                                <span>
+                                                    (<?php echo $rows['user_role'] == "0" ? 'Admin' : 'Standard User'; ?>)
+                                                </span>
+                                                <span>
+                                                    <b>Username:</b> <?php echo $rows['username']; ?>
+                                                </span>
+                                            </div>
+                                        </li>
+                                <?php }
+                                } ?>
+
+                            </ul> -->
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="right-container">
-                            <div class="input-field-box">
-                                <div class="publish-fields">
-                                    <h2 class="common-subtitle left-border line-1">Publish</h2>
-                                    <div>
-                                        <label class="form-label">Status</label>
-                                        <select name="" id="" class="form-select">
-                                            <option value="">Draft</option>
-                                            <option value="" selected>Published</option>
-                                            <option value="">Scheduled</option>
-                                        </select>
-                                    </div>
-                                    <div class="mt-3">
-                                        <label class="form-label">Visibility</label>
-                                        <select name="" id="" class="form-select">
-                                            <option value="">Public</option>
-                                            <option value="">Private</option>
-                                            <option value="">Password Protected</option>
-                                        </select>
-                                    </div>
-                                    <div class="mt-3">
-                                        <label class="form-label d-flex align-items-center gap-1"><i class="ri-calendar-line fs-5"></i>
-                                            <P></P>Publish Date
-                                        </label>
-                                        <input type="date" name="" id="" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="input-field-box mt-4">
-                                <div class="category-fields">
-                                    <h2 class="common-subtitle left-border line-2">Category</h2>
-                                    <div>
-                                        <select name="" id="" class="form-select">
-                                            <option value="">Select a category</option>
-                                        </select>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="input-field-box mt-4">
-                                <div class="tags-fields">
-                                    <h2 class="common-subtitle left-border line-3">Tags</h2>
-
-                                    <div class="tag-card">
-                                        <div class="tag-input-wrapper" id="tagWrapper">
-                                            <input type="text" placeholder="Type and press Enter to add tags.." class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="post-buttons mt-3">
-                                <button type="submit" class="blue-btn"><i class="ri-send-plane-fill fs-4"></i> Publish Post</button>
-                                <button type="submit" class="blue-btn"><i class="ri-save-3-line fs-4"></i>Save as Draft</button>
-                                <button type="submit" class="blue-btn"><i class="ri-eye-line fs-4"></i> Preview</button>
-                            </div>
-                        </div>
-                    </div>
-            </form>
+                </div>
+            </div>
         </div>
     </div>
 </section>
-
 <?php include "footer.php"; ?>
