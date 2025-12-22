@@ -193,9 +193,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const catSlug         = document.getElementById("cat-slug");
   const catDescription = document.getElementById("cat-description");
   const colorPicker    = document.getElementById("colorPicker");
-  const colorCode      = document.getElementById("colorCode");
-  const emojiInput     = document.getElementById("emojiValue");
-
+  const colorCode = document.getElementById("colorCode");
+  
+  const emojiInput = document.getElementById("emojiInput");
+  const emojiValue = document.getElementById("emojiValue");
+  const emojiPicker = document.querySelector("emoji-picker");
+  
   const previewName         = document.querySelector(".cat-preview-box .cat-name");
   const previewSlug         = document.querySelector(".cat-preview-box .cat-slug");
   const previewDescription  = document.querySelector(".cat-preview-box .cat-description");
@@ -224,8 +227,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (colorCode) colorCode.value = color.toUpperCase();
   });
 
-  emojiInput?.addEventListener("input", () => {
-    previewIcon.textContent = emojiInput.value || "😀";
+  
+  emojiPicker?.addEventListener("emoji-click", (event) => {
+    const emoji = event.detail.unicode;
+    emojiInput.value = emoji;
+    emojiValue.value = emoji;
+    previewIcon.textContent = emoji;
   });
+
 
 });

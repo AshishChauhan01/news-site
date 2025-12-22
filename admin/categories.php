@@ -255,7 +255,8 @@ include "header.php"; ?>
                                         id="colorCode"
                                         class=" form-control"
                                         value="#3B82F6"
-                                        placeholder="#000000">
+                                        placeholder="#000000"
+                                        readonly>
                                 </div>
                             </div>
                             <div class="col-md-6">
