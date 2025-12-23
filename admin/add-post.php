@@ -10,6 +10,7 @@ if (isset($_POST['add_post'])) {
     $post_title = mysqli_real_escape_string($conn, trim($_POST['post_title']));
     $post_description = mysqli_real_escape_string($conn, trim($_POST['post_description']));
     $post_category = $_POST['post_category'];
+    $final_file_name = null;
 
     date_default_timezone_set('Asia/Kolkata');
     $post_date = date('Y-m-d H:i:s');
@@ -24,7 +25,7 @@ if (isset($_POST['add_post'])) {
         $thumb_file_size = $_FILES['post_thumbnail']['size'];
 
         $thumb_name = pathinfo($thumb_file_name, PATHINFO_FILENAME);
-        $thumb_ext = pathinfo($thumb_file_name, PATHINFO_EXTENSION);
+        $thumb_ext = strtolower(pathinfo($thumb_file_name, PATHINFO_EXTENSION));
 
         $allowed_file = ['jpg', 'jpeg', 'png', 'webp'];
 
@@ -48,7 +49,7 @@ if (isset($_POST['add_post'])) {
     $insert_post = mysqli_query($conn, $insert_post_query);
 
     if ($insert_post) {
-        header('location:' . $_server['PHP_SELF'] . '?success=post-inserted');
+        header('location:' . $_SERVER['PHP_SELF'] . '?success=post-inserted');
     }
 }
 
@@ -139,6 +140,59 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                             <div class="title-head">
                                 <h3>Latest Added Posts</h3>
                             </div>
+                            <ul>
+                                <?php
+                                $latest_added_posts = "SELECT ps.title, ps.description, ps.thumbnail, ps.post_date, cs.category_name, us.first_name, us.last_name
+                                                        FROM posts as ps 
+                                                        LEFT JOIN categories as cs 
+                                                        ON ps.category_id  = cs.id
+                                                        LEFT JOIN users as us
+                                                        ON ps.author_id = us.id 
+                                                        ORDER BY ps.id DESC LIMIT 3";
+
+                                $fetch_latest_posts = mysqli_query($conn, $latest_added_posts);
+
+                                if (mysqli_num_rows($fetch_latest_posts) > 0) :
+
+                                    while ($rows = mysqli_fetch_assoc($fetch_latest_posts)) {
+                                ?>
+                                        <li>
+                                            <?php
+                                            $post_title = strip_tags($rows['title']);
+                                            $title_words = explode(' ', $post_title);
+
+                                            if (count($title_words) > 10) {
+                                                $post_title = implode(' ', array_slice($title_words, 0, 10)) . '...';
+                                            }
+
+                                            $post_description = strip_tags($rows['description']);
+                                            if (mb_strlen($post_description, 'UTF-8') > 100) {
+                                                $post_description = mb_substr($post_description, 0, 100, 'UTF-8') . "...";
+                                            }
+                                            ?>
+                                            <div>
+                                                <span style="max-width: 50%;">
+                                                    <img src="../assets/images/<?= $rows['thumbnail']; ?>" alt=""
+                                                        style="width: 40px; height: 40px; border-radius: 50%; margin-bottom: 2px;">
+                                                    <br>
+                                                    <?php echo $post_title . '&nbsp;(<em style="color:#000; opacity: 0.75;">' . $rows['category_name'] . '</em>)' ?>
+                                                </span>
+                                                <span>
+                                                    <?php echo $rows['first_name'] . "&nbsp;" . $rows['last_name']; ?>
+                                                </span>
+                                                <br>
+
+                                                <span>
+
+                                                    <b>Description:</b> <?php echo $post_description; ?>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    <?php }
+                                else : ?>
+                                    <p>🙄 No posts found!</p>
+                                <?php endif; ?>
+                            </ul>
                         </div>
                     </div>
                 </div>
