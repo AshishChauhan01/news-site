@@ -67,12 +67,13 @@ $get_posts = mysqli_query($conn, $get_posts_query);
                                 <td><?= $posts['first_name'] . '&nbsp;' . $posts['last_name'] ?></td>
                                 <td style="min-width: 104px;"><?= date('d-M-Y', strtotime($posts['post_date'])); ?></td>
                                 <td class="text-center" style="min-width:145px">
-                                    <a href="" class="mx-2 view-icon">
+                                    <a href="single.php?id=<?= $posts['id']; ?>" class="mx-2 view-icon">
                                         <i class="ri-eye-line text-primary"></i>
                                     </a>
-                                    <a href="" class="mx-2 edit-icon">
+                                    <a href="edit-post.php?id=<?= $posts['id']; ?>" class="mx-2 edit-icon">
                                         <i class="fa-solid fa-pen-to-square text-secondary"></i>
                                     </a>
+
                                     <a href="" class="mx-2 delete-icon" onclick="return confirm('Are you sure?')">
                                         <i class="fa-solid fa-trash text-secondary"></i>
                                     </a>
