@@ -47,3 +47,7 @@ CREATE TABLE categories (
 
 //alter category table, category post count as defined ALTER TABLE categories
 MODIFY posts INT UNSIGNED NOT NULL DEFAULT 0;
+
+//alter posts table(add description and thumbnail column)
+ALTER TABLE `posts` ADD `description` TEXT NULL DEFAULT NULL AFTER `title`;
+ALTER TABLE `posts` ADD `thumbnail` VARCHAR(255) NULL DEFAULT NULL AFTER `description`;

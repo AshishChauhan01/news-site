@@ -93,7 +93,7 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                             </div>
                             <ul>
                                 <?php
-                                $latest_added_cat = "SELECT * FROM categories LIMIT 4";
+                                $latest_added_cat = "SELECT * FROM categories ORDER BY ID DESC LIMIT 4";
                                 $fetch_latest_rec = mysqli_query($conn, $latest_added_cat);
                                 if (mysqli_num_rows($fetch_latest_rec) > 0) {
                                     while ($rows = mysqli_fetch_assoc($fetch_latest_rec)) {

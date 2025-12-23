@@ -12,7 +12,7 @@ include "header.php";
                         <h2>All Posts</h2>
                     </div>
                     <div class="col-md-6 text-end">
-                        <a href="add-user.php" class="btn btn-success btn-sm"><i class="fa-solid fa-plus"></i>&nbsp;Add Post</a>
+                        <a href="add-post.php" class="btn btn-success btn-sm"><i class="fa-solid fa-plus"></i>&nbsp;Add Post</a>
                     </div>
                 </div>
             </div>

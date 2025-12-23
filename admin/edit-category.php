@@ -34,7 +34,7 @@ if (isset($_POST['update_category'])) {
     $ext_query = mysqli_query($conn, $query);
 
     if ($ext_query) {
-        header('location:' . $_SERVER['PHP_SELF'] . '?success=updated&id=' . $category_id);
+        header('location:categories.php?success=updated&id=' . $category_id);
         exit();
     } else {
         header('location:' . $_SERVER['PHP_SELF'] . '?error=not-updated&id=' . $category_id);

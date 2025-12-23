@@ -1,7 +1,7 @@
 <?php
 $activePage = 'categories';
 include "header.php";
-$categories_query = "SELECT * FROM categories";
+$categories_query = "SELECT * FROM categories ORDER BY category_name";
 $get_records = mysqli_query($conn, $categories_query);
 if (isset($_GET['success']) || isset($_GET['error'])) {
     $alert_text = "";
@@ -10,6 +10,9 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
         $class_name = "alert-success";
         if ($_GET['success'] == "removed") {
             $alert_text = "😊 Category removed successfully.";
+        }
+        if ($_GET['success'] == "updated") {
+            $alert_text = "😊 Category updated successfully.";
         }
     }
     if (isset($_GET['error'])) {
