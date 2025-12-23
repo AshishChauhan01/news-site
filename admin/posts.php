@@ -8,6 +8,21 @@ $get_posts_query = "SELECT ps.*, cs.category_name, us.first_name, us.last_name F
                     ORDER BY id DESC";
 $get_posts = mysqli_query($conn, $get_posts_query);
 
+if (isset($_GET['success']) || isset($_GET['error'])) {
+    $alert_text = "";
+    $class_name = "";
+    if (isset($_GET['success'])) {
+        $class_name = "alert-success";
+        if ($_GET['success'] == 'updated') {
+            $alert_text = "😊 Post data updated successfully.";
+        }
+        if ($_GET['success'] == 'deleted') {
+            $alert_text = "😊 Post removed successfully.";
+        }
+    }
+    echo "<div class='alert $class_name alert-dismissible fade show' role='alert'> $alert_text
+    <button type='button' class='btn-close btn-sm' data-bs-dismiss='alert'></button></div>";
+}
 ?>
 
 <section class="posts-section section-padding min-height">
@@ -74,7 +89,7 @@ $get_posts = mysqli_query($conn, $get_posts_query);
                                         <i class="fa-solid fa-pen-to-square text-secondary"></i>
                                     </a>
 
-                                    <a href="" class="mx-2 delete-icon" onclick="return confirm('Are you sure?')">
+                                    <a href="delete-post.php?id=<?= $posts['id']; ?>" class="mx-2 delete-icon" onclick="return confirm('Are you sure?')">
                                         <i class="fa-solid fa-trash text-secondary"></i>
                                     </a>
                                 </td>

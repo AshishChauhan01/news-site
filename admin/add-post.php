@@ -44,6 +44,11 @@ if (isset($_POST['add_post'])) {
         $final_file_name = $thumb_name . date('dmyhis') . "." . $thumb_ext;
         move_uploaded_file($thumb_temp_name, "../assets/images/" .  $final_file_name);
     }
+    if (!isset($post_category)) {
+        header('location:' . $_SERVER['PHP_SELF'] . '?error=select-category');
+        exit();
+    }
+
     $insert_post_query = "INSERT INTO posts(`title`, `description`, `thumbnail`, `category_id`, `post_date`, `author_id`)
      VALUES('$post_title', ' $post_description','$final_file_name', '$post_category', '$post_date', '$author_id')";
     $insert_post = mysqli_query($conn, $insert_post_query);
@@ -70,6 +75,9 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
         }
         if ($_GET['error'] == 'invalid-filesize') {
             $alert_text = "🙄 Invalid file size.File size maximum 2MB allow.";
+        }
+        if ($_GET['error'] == 'select-category') {
+            $alert_text = "🙄 You must select a category before submitting the post.";
         }
     }
     echo "<div class='alert $class_name alert-dismissible fade show' role='alert'> $alert_text
@@ -173,7 +181,7 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                                             <div>
                                                 <span style="max-width: 50%;">
                                                     <img src="../assets/images/<?= $rows['thumbnail']; ?>" alt=""
-                                                        style="width: 40px; height: 40px; border-radius: 50%; margin-bottom: 2px;">
+                                                        style="width: 40px; height: 40px; border-radius: 50%; margin-bottom: 2px; object-fit:cover;">
                                                     <br>
                                                     <?php echo $post_title . '&nbsp;(<em style="color:#000; opacity: 0.75;">' . $rows['category_name'] . '</em>)' ?>
                                                 </span>
