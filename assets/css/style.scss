@@ -1787,3 +1787,16 @@ emoji-picker {
     }
   }
 }
+
+.posts-section {
+  .post-thumbnail {
+    img {
+      width: 200px;
+      height: auto;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--gray-color);
+    }
+  }
+}
