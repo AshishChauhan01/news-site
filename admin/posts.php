@@ -4,7 +4,8 @@ include "header.php";
 
 $get_posts_query = "SELECT ps.*, cs.category_name, us.first_name, us.last_name FROM posts as ps 
                     LEFT JOIN categories as cs ON ps.category_id = cs.id 
-                    LEFT JOIN users as us ON ps.author_id = us.id";
+                    LEFT JOIN users as us ON ps.author_id = us.id
+                    ORDER BY id DESC";
 $get_posts = mysqli_query($conn, $get_posts_query);
 
 ?>
@@ -30,42 +31,62 @@ $get_posts = mysqli_query($conn, $get_posts_query);
                         <th>Title</th>
                         <th>Description</th>
                         <th>Category</th>
-                        <th>Date</th>
                         <th>Author</th>
+                        <th>Publish date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1.</td>
-                        <td>
-                            <div class="post-thumbnail">
-                                <img src="" alt="">
-                            </div>
-                        </td>
-                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing.</td>
-                        <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id, obcaecati dolorum veritatis quos nobis non illum? Rem nobis optio enim perspiciatis tempora autem voluptatum pariatur fuga placeat. Vel explicabo tenetur necessitatibus, optio tempora, quos sit omnis repellat dolore qui itaque cumque eos fugit provident! Assumenda dolorum minus eligendi sequi doloribus.</td>
-                        <td>technology</td>
-                        <td>20aug2025</td>
-                        <td>ashish</td>
-                        <td class="text-center" style="min-width:145px">
-                            <a href="" class="mx-2 view-icon">
-                                <i class="ri-eye-line text-primary"></i>
-                            </a>
-                            <a href="" class="mx-2 edit-icon">
-                                <i class="fa-solid fa-pen-to-square text-secondary"></i>
-                            </a>
-                            <a href="" class="mx-2 delete-icon" onclick="return confirm('Are you sure?')">
-                                <i class="fa-solid fa-trash text-secondary"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <?php //else:  
+                    <?php if (mysqli_num_rows($get_posts)):
+                        $count = 1;
+                        while ($posts = mysqli_fetch_assoc($get_posts)) :
                     ?>
-                    <!-- <tr class="text-center">
-                            <td colspan="7">😢 No records found!</td>
-                        </tr> -->
-                    <?php //endif; 
+                            <tr>
+                                <td><?= $count; ?>.</td>
+                                <td>
+                                    <div class="post-thumbnail">
+                                        <img src="../assets/images/<?= $posts['thumbnail'];  ?>" alt="">
+                                    </div>
+                                </td>
+                                <?php
+                                $post_title = strip_tags($posts['title']);
+                                $title_words = explode(" ", $post_title);
+                                if (count($title_words) > 20) {
+                                    $post_title = implode(" ", array_slice($title_words, 0, 20)) . "...";
+                                }
+
+                                $post_description = strip_tags($posts['description']);
+                                $description_words = explode(" ", $post_description);
+                                if (count($description_words) > 50) {
+                                    $post_description = implode(" ", array_slice($description_words, 0, 50)) . "...";
+                                }
+                                ?>
+                                <td style="min-width: 160px;" class="fw-bold"><?= $post_title; ?></td>
+                                <td><?= $post_description; ?></td>
+                                <td><?= $posts['category_name'] ?></td>
+                                <td><?= $posts['first_name'] . '&nbsp;' . $posts['last_name'] ?></td>
+                                <td style="min-width: 104px;"><?= date('d-M-Y', strtotime($posts['post_date'])); ?></td>
+                                <td class="text-center" style="min-width:145px">
+                                    <a href="" class="mx-2 view-icon">
+                                        <i class="ri-eye-line text-primary"></i>
+                                    </a>
+                                    <a href="" class="mx-2 edit-icon">
+                                        <i class="fa-solid fa-pen-to-square text-secondary"></i>
+                                    </a>
+                                    <a href="" class="mx-2 delete-icon" onclick="return confirm('Are you sure?')">
+                                        <i class="fa-solid fa-trash text-secondary"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php
+                            $count++;
+                        endwhile;
+                    else:
+                        ?>
+                        <tr class="text-center">
+                            <td colspan="9">😢 No records found!</td>
+                        </tr>
+                    <?php endif;
                     ?>
                 </tbody>
             </table>

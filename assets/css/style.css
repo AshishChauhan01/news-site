@@ -1621,4 +1621,7 @@ emoji-picker {
      object-fit: cover;
   border-radius: 12px;
   border: 1px solid var(--gray-color);
+}
+.posts-section table tr td {
+  vertical-align: middle;
 }/*# sourceMappingURL=style.css.map */

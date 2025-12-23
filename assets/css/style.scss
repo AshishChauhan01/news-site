@@ -1799,4 +1799,11 @@ emoji-picker {
       border: 1px solid var(--gray-color);
     }
   }
+  table {
+    tr {
+      td {
+        vertical-align: middle;
+      }
+    }
+  }
 }
