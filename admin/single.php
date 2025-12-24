@@ -51,7 +51,7 @@ $get_related_posts = mysqli_query($conn, $related_post_query);
 
                                 <div class="content">
                                     <div class="category">
-                                        <a href="category.php?id=<?= $post['category_id'] ?>">
+                                        <a href="archieve.php?post_type=category&id=<?= $post['category_id'] ?>">
                                             <span><?= $post['category_name']; ?></span>
                                         </a>
                                     </div>
@@ -68,7 +68,7 @@ $get_related_posts = mysqli_query($conn, $related_post_query);
                                         </h3>
                                     </a>
                                     <div class="author-and-date">
-                                        <a href="#"><span class="author"><i class="ri-user-line me-1"></i>Ashish Chauhan</span></a>
+                                        <a href="archieve.php?post_type=author&id=<?= $post['author_id'] ?>"><span class="author"><i class="ri-user-line me-1"></i>Ashish Chauhan</span></a>
                                         <span>&nbsp;|&nbsp;</span>
                                         <span class="post-date"><i class="ri-calendar-line me-1"></i>August 15, 2025</span>
                                     </div>
