@@ -163,13 +163,13 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                             </div>
                             <ul>
                                 <?php
-                                $latest_added_posts = "SELECT ps.title, ps.description, ps.thumbnail, ps.post_date, cs.category_name, us.first_name, us.last_name
+                                $latest_added_posts = "SELECT ps.title, ps.description, ps.thumbnail, ps.post_date, ps.updated_at, cs.category_name, us.first_name, us.last_name
                                                         FROM posts as ps 
                                                         LEFT JOIN categories as cs 
                                                         ON ps.category_id  = cs.id
                                                         LEFT JOIN users as us
                                                         ON ps.author_id = us.id 
-                                                        ORDER BY ps.updated_at DESC LIMIT 3";
+                                                        ORDER BY ps.updated_at DESC LIMIT 6";
 
                                 $fetch_latest_posts = mysqli_query($conn, $latest_added_posts);
 
@@ -190,23 +190,39 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                                             if (mb_strlen($post_description, 'UTF-8') > 100) {
                                                 $post_description = mb_substr($post_description, 0, 100, 'UTF-8') . "...";
                                             }
+
+                                            date_default_timezone_set('Asia/Kolkata');
+                                            $actual_diff = null;
+                                            $post_date = date_create($rows['updated_at']);
+                                            $today_date = date_create('now');
+                                            $diff = date_diff($post_date, $today_date);
+                                            if ($diff->y) {
+                                                $actual_diff = $diff->y . '&nbsp;' . (($diff->y > 1) ? 'years' : 'year') . '&nbsp;ago';
+                                            } else if ($diff->m) {
+                                                $actual_diff = $diff->m . '&nbsp;' . (($diff->h > 1) ? 'months' : 'month') . '&nbsp;ago';
+                                            } else if ($diff->d) {
+                                                $actual_diff = $diff->d . '&nbsp;' . (($diff->d > 1) ? 'days' : 'day') . '&nbsp;ago';
+                                            } else if ($diff->h) {
+                                                $actual_diff = $diff->h . '&nbsp;' . (($diff->h > 1) ? 'hours' : 'hour') . '&nbsp;ago';
+                                            } else if ($diff->i) {
+                                                $actual_diff = $diff->i . '&nbsp;' . (($diff->i > 1) ? 'minutes' : 'minute') . '&nbsp;ago';
+                                            } else if ($diff->s) {
+                                                $actual_diff = $diff->s . '&nbsp;' . (($diff->s > 1) ? 'seconds' : 'second') . '&nbsp;ago';
+                                            } else {
+                                                $actual_diff = "Just now";
+                                            }
                                             ?>
-                                            <div>
-                                                <span style="max-width: 50%;">
-                                                    <img src="../assets/images/<?= $rows['thumbnail']; ?>" alt=""
-                                                        style="width: 40px; height: 40px; border-radius: 50%; margin-bottom: 2px; object-fit: cover;">
-                                                    <br>
-                                                    <?php echo $post_title . '&nbsp;(<em style="color:#000; opacity: 0.75;">' . $rows['category_name'] . '</em>)' ?>
-                                                </span>
-                                                <span>
-                                                    <?php echo $rows['first_name'] . "&nbsp;" . $rows['last_name']; ?>
-                                                </span>
-                                                <br>
-
-                                                <span>
-
-                                                    <b>Description:</b> <?php echo $post_description; ?>
-                                                </span>
+                                            <div class="latest-added-post">
+                                                <div class="thumbnail">
+                                                    <img src="../assets/images/<?= $rows['thumbnail']; ?>" alt="thumbnail">
+                                                </div>
+                                                <div>
+                                                    <p><?= $post_title ?></p>
+                                                    <div class="author">
+                                                        <span><?php echo $rows['first_name'] . "&nbsp;" . $rows['last_name']; ?></span>
+                                                        <span><?= $actual_diff ?></span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </li>
                                     <?php }

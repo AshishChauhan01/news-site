@@ -2,10 +2,20 @@
 $activePage = 'posts';
 include "header.php";
 
+$total_records = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM posts"));
+$limit = 5;
+$current_page = 1;
+
+if (isset($_GET['page']) && is_numeric($_GET['page'])) {
+    $current_page = $_GET['page'];
+}
+
+$posts_offset = ($current_page * $limit) - $limit;
+
 $get_posts_query = "SELECT ps.*, cs.category_name, us.first_name, us.last_name FROM posts as ps 
                     LEFT JOIN categories as cs ON ps.category_id = cs.id 
                     LEFT JOIN users as us ON ps.author_id = us.id
-                    ORDER BY id DESC";
+                    ORDER BY id DESC LIMIT $posts_offset, $limit";
 $get_posts = mysqli_query($conn, $get_posts_query);
 
 if (isset($_GET['success']) || isset($_GET['error'])) {
@@ -106,6 +116,33 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                     ?>
                 </tbody>
             </table>
+        </div>
+        <?php $no_of_pages = ceil($total_records / $limit);
+        ?>
+
+        <div class="row align-items-center mt-4">
+            <div class="col-md-6">
+                <p style="#f8fafc" class="mb-0">Showing <span class="fw-bold"><?= $posts_offset + 1; ?></span><span>-</span><span class="fw-bold"><?= ($total_records >= ($posts_offset + $limit)) ? ($posts_offset + $limit) : $total_records; ?></span>
+                    of <span class="fw-bolder"><?= $total_records; ?></span> records
+                </p>
+            </div>
+            <div class="col-md-6">
+                <div class="pagination text-end">
+                    <li class="page-item">
+                        <a href="<?php echo $_SERVER['PHP_SELF'] . '?page=' . $current_page - 1 ?>"
+                            onclick="return <?= $current_page == 1 ? 'false' : 'true' ?>"
+                            class="page-link">Previous</a>
+                    </li>
+                    <?php for ($i = 1; $i <= $no_of_pages; $i++) : ?>
+                        <li class="page-item <?= $i == $current_page ? 'active' : ''; ?>"><a href="<?php echo $_SERVER['PHP_SELF'] . '?page=' . $i ?>" class="page-link"><?= $i; ?></a></li>
+                    <?php endfor; ?>
+                    <li class="page-item">
+                        <a href="<?php echo $_SERVER['PHP_SELF'] . '?page=' . $current_page + 1 ?>"
+                            onclick="return <?= $current_page == $no_of_pages ? 'false' : 'true'; ?>"
+                            class="page-link">Next</a>
+                    </li>
+                </div>
+            </div>
         </div>
     </div>
 
