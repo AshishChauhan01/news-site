@@ -122,7 +122,7 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
 
         <div class="row align-items-center mt-4">
             <div class="col-md-6">
-                <p style="#f8fafc" class="mb-0">Showing <span class="fw-bold"><?= $posts_offset + 1; ?></span><span>-</span><span class="fw-bold"><?= ($total_records >= ($posts_offset + $limit)) ? ($posts_offset + $limit) : $total_records; ?></span>
+                <p style="#f8fafc" class="mb-0">Showing <span class="fw-normal"><?= $posts_offset + 1; ?></span><span>-</span><span class="fw-bold"><?= ($total_records >= ($posts_offset + $limit)) ? ($posts_offset + $limit) : $total_records; ?></span>
                     of <span class="fw-bolder"><?= $total_records; ?></span> records
                 </p>
             </div>

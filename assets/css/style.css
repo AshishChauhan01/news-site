@@ -1654,4 +1654,111 @@ emoji-picker {
 }
 .posts-section table tr td {
   vertical-align: middle;
+}
+
+.single-post-section .single-post {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 40px 80px 60px;
+}
+.single-post-section .single-post .post-date,
+.single-post-section .single-post .author {
+  text-align: center;
+  color: var(--gray-color);
+  font-weight: 500;
+  opacity: 0.85;
+  margin-bottom: 2px;
+}
+.single-post-section .single-post .author {
+  margin-bottom: 0px;
+  margin-top: 8px;
+}
+.single-post-section .single-post .common-title {
+  text-align: center;
+  max-width: 75%;
+  margin: 0px auto;
+}
+.single-post-section .single-post .common-title.category-name {
+  opacity: 0.85;
+  font-size: 18px;
+  font-style: italic;
+  margin-bottom: 8px !important;
+}
+.single-post-section .single-post .thumbnail-image {
+  margin: 30px 0px;
+}
+.single-post-section .single-post .thumbnail-image img {
+  width: 100%;
+  aspect-ratio: 2/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 14px;
+}
+
+.latest-posts-section a {
+  display: inline-block;
+}
+.latest-posts-section a.box-link {
+  display: block;
+}
+.latest-posts-section.section-padding {
+  padding-bottom: 60px;
+}
+.latest-posts-section .common-title {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+.latest-posts-section .latest-post {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.latest-posts-section .latest-post .thumbnail img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.latest-posts-section .latest-post .content {
+  padding: 20px;
+}
+.latest-posts-section .latest-post .content .category span {
+  font-size: 14px;
+  padding: 2px 10px;
+  font-weight: 700;
+  border-radius: 4px;
+  display: inline-block;
+  color: #fff;
+  background-color: var(--blue-color);
+  transition: all 0.3s ease-in-out;
+}
+.latest-posts-section .latest-post .content .category span:hover {
+  scale: 0.95;
+  opacity: 0.95;
+}
+.latest-posts-section .latest-post .content h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--dark-slate-color);
+  margin: 16px 0px 8px;
+  opacity: 0.85;
+  min-height: 77px;
+}
+.latest-posts-section .latest-post .content .author-and-date span {
+  color: var(--gray-color);
+  font-size: 14px;
+  font-weight: 500;
+}
+.latest-posts-section .latest-post .content .author-and-date span.author:hover {
+  scale: 0.95;
+  color: rgba(0, 0, 0, 0.75);
+}
+.latest-posts-section .latest-post:hover {
+  scale: 0.98;
+  transform: translateY(-4px);
+  opacity: 0.9;
 }/*# sourceMappingURL=style.css.map */
