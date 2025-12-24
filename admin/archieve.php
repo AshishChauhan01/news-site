@@ -2,6 +2,8 @@
 $activePage = 'posts';
 include "header.php";
 $page_title = "All Posts";
+$category_id = 0;
+$author_id = 0;
 
 if (isset($_GET['post_type']) && is_numeric($_GET['id'])) {
     if ($_GET['post_type'] == "category") {
@@ -16,7 +18,8 @@ if (isset($_GET['post_type']) && is_numeric($_GET['id'])) {
         $search_term = $_GET['id'];
     }
 } else {
-    $category_id = "NULL";
+    $category_id = 0;
+    $author_id = 0;
 }
 
 $total_records = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM posts"));
@@ -31,7 +34,9 @@ $posts_offset = ($current_page * $limit) - $limit;
 
 $get_posts_query = "SELECT ps.*, cs.category_name, us.first_name, us.last_name FROM posts as ps 
                     LEFT JOIN categories as cs ON ps.category_id = cs.id 
-                    LEFT JOIN users as us ON ps.author_id = us.id WHERE ps.category_id = $category_id
+                    LEFT JOIN users as us ON ps.author_id = us.id
+                    WHERE ($category_id = 0 OR ps.category_id = $category_id) 
+                    AND ($author_id = 0 OR ps.author_id = $author_id)
                     ORDER BY id DESC LIMIT $posts_offset, $limit";
 $get_posts = mysqli_query($conn, $get_posts_query);
 
