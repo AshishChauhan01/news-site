@@ -8,10 +8,13 @@ $author_id = 0;
 if (isset($_GET['post_type']) && is_numeric($_GET['id'])) {
     if ($_GET['post_type'] == "category") {
         $category_id = intval($_GET['id']);
-        $page_title = "Category Posts: Technology";
+        $get_cat_name = mysqli_fetch_assoc(mysqli_query($conn, "SELECT category_name FROM categories WHERE id = $category_id"));
+        $page_title = "Category Posts:" . $get_cat_name['category_name'];
     }
     if ($_GET['post_type'] == "author") {
         $author_id = intval($_GET['id']);
+        $auth_name = mysqli_fetch_assoc(mysqli_query($conn, "SELECT first_name, last_name FROM users WHERE id = $author_id"));
+        $page_title = "Author Posts: " . $auth_name['first_name'] . '&nbsp;' . $auth_name['last_name'];
     }
 } else if (isset($_GET['post_type']) && $_GET['post_type'] == "search") {
     if ($_GET['post_type'] == "search") {
