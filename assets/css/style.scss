@@ -132,6 +132,16 @@ h2.page-heading {
           text-align: center;
           padding-right: 20px;
         }
+        a {
+          color: var(--dark-slate-color);
+          opacity: 0.85;
+          display: inline-block;
+          transition: all 0.3s ease-in-out;
+          &:hover {
+            color: var(--blue-color);
+            scale: 1.05;
+          }
+        }
       }
       th {
         font-weight: 600;

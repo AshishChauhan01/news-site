@@ -132,6 +132,18 @@ h2.page-heading {
   text-align: center;
   padding-right: 20px;
 }
+.section-wrapper table tr th a,
+.section-wrapper table tr td a {
+  color: var(--dark-slate-color);
+  opacity: 0.85;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+}
+.section-wrapper table tr th a:hover,
+.section-wrapper table tr td a:hover {
+  color: var(--blue-color);
+  scale: 1.05;
+}
 .section-wrapper table tr th {
   font-weight: 600;
 }
