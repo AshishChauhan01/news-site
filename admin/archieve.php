@@ -4,17 +4,23 @@ include "header.php";
 $page_title = "All Posts";
 $category_id = 0;
 $author_id = 0;
-
+$post_type = "";
+$post_id = "";
+$total_posts_q = "SELECT id FROM posts ";
 if (isset($_GET['post_type']) && is_numeric($_GET['id'])) {
     if ($_GET['post_type'] == "category") {
-        $category_id = intval($_GET['id']);
+        $post_id = $category_id = (int) $_GET['id'];
         $get_cat_name = mysqli_fetch_assoc(mysqli_query($conn, "SELECT category_name FROM categories WHERE id = $category_id"));
-        $page_title = "Category Posts:" . $get_cat_name['category_name'];
+        $page_title = "Category Posts:<b>" . $get_cat_name['category_name'] . "</b>";
+        $post_type = "category";
+        $total_posts_q .= "WHERE category_id = $post_id";
     }
     if ($_GET['post_type'] == "author") {
-        $author_id = intval($_GET['id']);
+        $post_id = $author_id = (int) $_GET['id'];
         $auth_name = mysqli_fetch_assoc(mysqli_query($conn, "SELECT first_name, last_name FROM users WHERE id = $author_id"));
-        $page_title = "Author Posts: " . $auth_name['first_name'] . '&nbsp;' . $auth_name['last_name'];
+        $page_title = "Author Posts:<b>" . $auth_name['first_name'] . '&nbsp;' . $auth_name['last_name'] . "</b>";
+        $post_type = "author";
+        $total_posts_q .= "WHERE author_id = $post_id";
     }
 } else if (isset($_GET['post_type']) && $_GET['post_type'] == "search") {
     if ($_GET['post_type'] == "search") {
@@ -25,7 +31,7 @@ if (isset($_GET['post_type']) && is_numeric($_GET['id'])) {
     $author_id = 0;
 }
 
-$total_records = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM posts"));
+$total_records = mysqli_num_rows(mysqli_query($conn, $total_posts_q));
 $limit = 5;
 $current_page = 1;
 
@@ -41,6 +47,7 @@ $get_posts_query = "SELECT ps.*, cs.category_name, us.first_name, us.last_name F
                     WHERE ($category_id = 0 OR ps.category_id = $category_id) 
                     AND ($author_id = 0 OR ps.author_id = $author_id)
                     ORDER BY id DESC LIMIT $posts_offset, $limit";
+
 $get_posts = mysqli_query($conn, $get_posts_query);
 
 if (isset($_GET['success']) || isset($_GET['error'])) {
@@ -154,15 +161,17 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
             <div class="col-md-6">
                 <div class="pagination text-end">
                     <li class="page-item">
-                        <a href="<?php echo $_SERVER['PHP_SELF'] . '?page=' . $current_page - 1 ?>"
+                        <a href="<?php echo $_SERVER['PHP_SELF'] . '?page=' . ($current_page - 1) . '&post_type=' . $post_type . '&id=' . $post_id ?>"
                             onclick="return <?= $current_page == 1 ? 'false' : 'true' ?>"
                             class="page-link">Previous</a>
                     </li>
                     <?php for ($i = 1; $i <= $no_of_pages; $i++) : ?>
-                        <li class="page-item <?= $i == $current_page ? 'active' : ''; ?>"><a href="<?php echo $_SERVER['PHP_SELF'] . '?page=' . $i ?>" class="page-link"><?= $i; ?></a></li>
+                        <li class="page-item <?= $i == $current_page ? 'active' : ''; ?>">
+                            <a href="<?php echo $_SERVER['PHP_SELF'] . '?page=' . $i . '&post_type=' . $post_type . '&id=' . $post_id ?>" class="page-link"><?= $i; ?></a>
+                        </li>
                     <?php endfor; ?>
                     <li class="page-item">
-                        <a href="<?php echo $_SERVER['PHP_SELF'] . '?page=' . $current_page + 1 ?>"
+                        <a href="<?php echo $_SERVER['PHP_SELF'] . '?page=' . ($current_page + 1) . '&post_type=' . $post_type . '&id=' . $post_id ?>"
                             onclick="return <?= $current_page == $no_of_pages ? 'false' : 'true'; ?>"
                             class="page-link">Next</a>
                     </li>

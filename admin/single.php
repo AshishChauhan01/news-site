@@ -14,7 +14,11 @@ $cat_id = $post['category_id'];
 <section class="single-post-section section-padding min-height">
     <div class="container">
         <div class="single-post">
-            <h3 class="common-title category-name "><?= $post['category_name']; ?></h3>
+            <div class="text-center">
+                <a href="archieve.php?post_type=category&id=<?= $cat_id; ?>">
+                    <h3 class="common-title category-name "><?= $post['category_name']; ?></h3>
+                </a>
+            </div>
             <h2 class="post-title common-title"><?= $post['title']; ?></h2>
             <p class="author"><?= $post['first_name'] . '&nbsp;' . $post['last_name']; ?></p>
             <p class="post-date"><?= date('F d, Y', strtotime($post['post_date'])) ?></p>
