@@ -1811,13 +1811,16 @@ emoji-picker {
 .home-page .posts-section .post {
   display: flex;
   gap: 20px;
+  padding: 28px 0px 0;
+}
+.home-page .posts-section .post:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 20px 0px;
+  padding-bottom: 28px;
 }
 .home-page .posts-section .post .post-thumb img {
   width: 200px;
   height: auto;
-  aspect-ratio: 16/9;
+  aspect-ratio: 10/6;
   -o-object-fit: cover;
      object-fit: cover;
   border: 1px solid var(--gray-color);
@@ -1834,9 +1837,75 @@ emoji-picker {
 .home-page .posts-section .post p.post-description {
   color: var(--slate-color);
   font-size: 14px;
+  margin-top: 6px;
+}
+.home-page .posts-section .post .post-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 .home-page .posts-section .post .post-info span {
   color: var(--dark-slate-color);
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 600;
   opacity: 0.85;
+}
+.home-page .posts-section .post .post-info span i {
+  color: #1453f2;
+}
+
+.title-border {
+  border-left: 4px solid #1453f2;
+  line-height: 1;
+  padding-left: 8px;
+}
+
+.search-post .common-title {
+  margin-bottom: 20px;
+}
+.search-post .search-box {
+  position: relative;
+}
+.search-post .search-box input {
+  overflow: hidden;
+  padding-right: 96px !important;
+}
+.search-post .search-box input:focus {
+  border: 1px solid #ced4da;
+}
+.search-post .search-box .search-btn {
+  background-color: #1453f2;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  right: 0px;
+  height: 100%;
+  border-radius: 0px;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  padding: 0px 20px;
+}
+
+.recent-posts .recent-post .post {
+  gap: 10px;
+}
+.recent-posts .recent-post .post .post-thumb img {
+  width: 130px;
+}
+.recent-posts .recent-post .post .post-title {
+  font-size: 13px;
+}
+.recent-posts .recent-post .post .post-content {
+  width: calc(100% - 130px);
+}
+.recent-posts .recent-post .post .post-content .post-info {
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.recent-posts .recent-post .post .post-content .post-info span {
+  font-size: 12px;
+}
+.recent-posts .recent-post .post .post-content .posting-time {
+  font-size: 12px;
+  color: var(--gray-color);
 }/*# sourceMappingURL=style.css.map */
