@@ -189,33 +189,14 @@ h2.page-heading {
         line-height: 1;
         font-size: 24px;
       }
-      > div {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
 
-        span {
-          display: block;
-          min-width: 50%;
-          &:first-child {
-            color: #000;
-          }
-          &:nth-child(2) {
-            color: #99a1af;
-            font-size: 12px;
-            text-align: right;
-          }
-          &:last-child {
-            display: block;
-            width: 100%;
-            font-size: 12px;
-            color: #99a1af;
-            b {
-              color: rgba($color: #000000, $alpha: 0.6);
-            }
-          }
+      .latest-post {
+        transition: all 0.3s ease-in-out;
+        a {
+          color: rgba($color: #000000, $alpha: 1);
         }
-        &.latest-added-post {
+        .post {
+          display: flex;
           flex-wrap: nowrap;
           justify-content: start;
           gap: 10px;
@@ -230,11 +211,33 @@ h2.page-heading {
           p {
             margin-bottom: 2px;
           }
+          span {
+            display: block;
+            min-width: 50%;
+            &:first-child {
+              color: #000;
+            }
+            &:nth-child(2) {
+              color: #99a1af;
+              font-size: 12px;
+              text-align: right;
+            }
+            &:last-child {
+              display: block;
+              width: 100%;
+              font-size: 12px;
+              color: #99a1af;
+              b {
+                color: rgba($color: #000000, $alpha: 0.6);
+              }
+            }
+          }
           .author {
             display: flex;
             justify-content: start;
             flex-wrap: wrap;
             gap: 8px;
+            row-gap: 0px;
             span {
               color: #99a1af;
               font-size: 12px;
@@ -243,6 +246,10 @@ h2.page-heading {
               width: auto;
             }
           }
+        }
+        &:hover {
+          // background-color: rgba($color: #ddeaff, $alpha: 0.2);
+          scale: 1.05;
         }
       }
     }
@@ -1848,6 +1855,7 @@ emoji-picker {
     border-radius: 16px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     padding: 40px 80px 60px;
+
     .post-date,
     .author {
       text-align: center;
@@ -1858,7 +1866,16 @@ emoji-picker {
     }
     .author {
       margin-bottom: 0px;
-      margin-top: 8px;
+      margin-top: 4px;
+      a {
+        display: inline-block;
+        color: var(--gray-color);
+        font-weight: 500;
+        opacity: 0.85;
+        &:hover {
+          color: var(--blue-color);
+        }
+      }
     }
     .common-title {
       text-align: center;
@@ -1866,7 +1883,7 @@ emoji-picker {
       margin: 0px auto;
       &.category-name {
         opacity: 0.85;
-        font-size: 16px;
+        font-size: 14px;
         font-style: italic;
         display: inline-block;
         background: var(--blue-color);
@@ -1965,6 +1982,51 @@ emoji-picker {
       scale: 0.98;
       transform: translateY(-4px);
       opacity: 0.9;
+    }
+  }
+}
+
+.home-page {
+  padding: 30px 0px;
+  .posts-section {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 0px;
+    .post {
+      display: flex;
+      gap: 20px;
+      border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+      padding: 20px 0px;
+      .post-thumb {
+        img {
+          width: 200px;
+          height: auto;
+          aspect-ratio: 16/9;
+          object-fit: cover;
+          border: 1px solid var(--gray-color);
+        }
+      }
+      .post-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: rgba($color: #1453f2, $alpha: 0.85);
+        margin-bottom: 4px;
+      }
+      p {
+        margin-bottom: 0px;
+        &.post-description {
+          color: var(--slate-color);
+          font-size: 14px;
+        }
+      }
+
+      .post-info {
+        span {
+          color: var(--dark-slate-color);
+          font-size: 14px;
+          opacity: 0.85;
+        }
+      }
     }
   }
 }

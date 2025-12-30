@@ -120,8 +120,8 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                                 ?>
                                 <td style="min-width: 160px;" class="fw-bold"><?= $post_title; ?></td>
                                 <td><?= $post_description; ?></td>
-                                <td><?= $posts['category_name'] ?></td>
-                                <td><?= $posts['first_name'] . '&nbsp;' . $posts['last_name'] ?></td>
+                                <td class="cat-name"><a href="archieve.php?post_type=category&id=<?= $posts['category_id']; ?>"><?= $posts['category_name'] ?></a></td>
+                                <td class="author-name"><a href="archieve.php?post_type=author&id=<?= $posts['author_id']; ?>"><?= $posts['first_name'] . '&nbsp;' . $posts['last_name'] ?></a></td>
                                 <td style="min-width: 104px;"><?= date('d-M-Y', strtotime($posts['post_date'])); ?></td>
                                 <td class="text-center" style="min-width:145px">
                                     <a href="single.php?id=<?= $posts['id']; ?>" class="mx-2 view-icon">

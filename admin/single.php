@@ -20,7 +20,13 @@ $cat_id = $post['category_id'];
                 </a>
             </div>
             <h2 class="post-title common-title"><?= $post['title']; ?></h2>
-            <p class="author"><?= $post['first_name'] . '&nbsp;' . $post['last_name']; ?></p>
+
+            <p class="author">
+                <a href="archieve.php?post_type=author&id=<?= $post['author_id']; ?>">
+                    <?= $post['first_name'] . '&nbsp;' . $post['last_name']; ?>,
+                </a>
+            </p>
+
             <p class="post-date"><?= date('F d, Y', strtotime($post['post_date'])) ?></p>
             <div class="thumbnail-image">
                 <img src="../assets/images/<?= $post['thumbnail']; ?>" alt="">

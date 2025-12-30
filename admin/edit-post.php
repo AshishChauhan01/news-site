@@ -138,6 +138,7 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                                         <input type="file" name="post_thumbnail" id="post_thumbnail" class="form-control">
                                         <div class="form-text">*Only jpg, jpeg, png and webp file types allowed.</div>
                                         <div class="form-text">*Maximum file size 2MB allowed.</div>
+                                        <div class="form-text">*Leave blank if you don't want to change image.</div>
                                     </div>
                                     <div class="col-md-5">
                                         <div class="mt-2">
@@ -163,7 +164,7 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                             </div>
                             <ul>
                                 <?php
-                                $latest_added_posts = "SELECT ps.title, ps.description, ps.thumbnail, ps.post_date, ps.updated_at, cs.category_name, us.first_name, us.last_name
+                                $latest_added_posts = "SELECT ps.id, ps.title, ps.description, ps.thumbnail, ps.post_date, ps.updated_at, cs.category_name, us.first_name, us.last_name
                                                         FROM posts as ps 
                                                         LEFT JOIN categories as cs 
                                                         ON ps.category_id  = cs.id
@@ -212,17 +213,21 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                                                 $actual_diff = "Just now";
                                             }
                                             ?>
-                                            <div class="latest-added-post">
-                                                <div class="thumbnail">
-                                                    <img src="../assets/images/<?= $rows['thumbnail']; ?>" alt="thumbnail">
-                                                </div>
-                                                <div>
-                                                    <p><?= $post_title ?></p>
-                                                    <div class="author">
-                                                        <span><?php echo $rows['first_name'] . "&nbsp;" . $rows['last_name']; ?></span>
-                                                        <span><?= $actual_diff ?></span>
+                                            <div class="latest-post">
+                                                <a href='single.php?id=<?= $rows['id']; ?>'>
+                                                    <div class=" post">
+                                                        <div class="thumbnail">
+                                                            <img src="../assets/images/<?= $rows['thumbnail']; ?>" alt="thumbnail">
+                                                        </div>
+                                                        <div>
+                                                            <p><?= $post_title ?></p>
+                                                            <div class="author">
+                                                                <span><?php echo $rows['first_name'] . "&nbsp;" . $rows['last_name']; ?></span>
+                                                                <span><?= $actual_diff ?></span>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </a>
                                             </div>
                                         </li>
                                     <?php }

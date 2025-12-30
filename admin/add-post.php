@@ -50,8 +50,10 @@ if (isset($_POST['add_post'])) {
     }
 
     $insert_post_query = "INSERT INTO posts(`title`, `description`, `thumbnail`, `category_id`, `post_date`, `author_id`)
-     VALUES('$post_title', ' $post_description','$final_file_name', '$post_category', '$post_date', '$author_id')";
-    $insert_post = mysqli_query($conn, $insert_post_query);
+     VALUES('$post_title', ' $post_description','$final_file_name', '$post_category', '$post_date', '$author_id');";
+    $inc_post_num = "UPDATE categories SET posts = posts + 1 WHERE id = $post_category;";
+    $multi_query = $insert_post_query . $inc_post_num;
+    $insert_post = mysqli_multi_query($conn, $multi_query);
 
     if ($insert_post) {
         header('location:' . $_SERVER['PHP_SELF'] . '?success=post-inserted');
@@ -150,7 +152,7 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                             </div>
                             <ul>
                                 <?php
-                                $latest_added_posts = "SELECT ps.title, ps.description, ps.thumbnail, ps.post_date, cs.category_name, us.first_name, us.last_name
+                                $latest_added_posts = "SELECT ps.id, ps.title, ps.description, ps.thumbnail, ps.post_date, cs.category_name, us.first_name, us.last_name
                                                         FROM posts as ps 
                                                         LEFT JOIN categories as cs 
                                                         ON ps.category_id  = cs.id
@@ -165,12 +167,13 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                                     while ($rows = mysqli_fetch_assoc($fetch_latest_posts)) {
                                 ?>
                                         <li>
+
                                             <?php
                                             $post_title = strip_tags($rows['title']);
                                             $title_words = explode(' ', $post_title);
 
-                                            if (count($title_words) > 10) {
-                                                $post_title = implode(' ', array_slice($title_words, 0, 10)) . '...';
+                                            if (count($title_words) > 7) {
+                                                $post_title = implode(' ', array_slice($title_words, 0, 7)) . '...';
                                             }
 
                                             $post_description = strip_tags($rows['description']);
@@ -203,19 +206,24 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                                             // $time_margin = $current_time - $post_time;
                                             // echo floor($time_margin / (3600 * 24));
                                             ?>
-                                            <div class="latest-added-post">
 
-                                                <div class="thumbnail">
-                                                    <img src="../assets/images/<?= $rows['thumbnail']; ?>" alt="thumbnail">
-                                                </div>
-                                                <div>
-                                                    <p><?= $post_title ?></p>
-                                                    <div class="author">
-                                                        <span><?php echo $rows['first_name'] . "&nbsp;" . $rows['last_name']; ?></span>
-                                                        <span><?= $actual_diff ?></span>
+                                            <div class="latest-post">
+                                                <a href="single.php?id=<?= $rows['id']; ?>">
+                                                    <div class="post">
+                                                        <div class="thumbnail">
+                                                            <img src="../assets/images/<?= $rows['thumbnail']; ?>" alt="thumbnail">
+                                                        </div>
+                                                        <div>
+                                                            <p><?= $post_title ?></p>
+                                                            <div class="author">
+                                                                <span><?php echo $rows['first_name'] . "&nbsp;" . $rows['last_name']; ?></span>
+                                                                <span><?= $actual_diff ?></span>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </a>
                                             </div>
+
                                         </li>
                                     <?php }
                                 else : ?>
