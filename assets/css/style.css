@@ -1853,6 +1853,13 @@ emoji-picker {
 .home-page .posts-section .post .post-info span i {
   color: #1453f2;
 }
+.home-page .posts-section .post .post-info a {
+  transition: all 0.3s ease-in-out;
+}
+.home-page .posts-section .post .post-info a:hover {
+  scale: 0.95;
+  opacity: 0.9;
+}
 
 .title-border {
   border-left: 4px solid #1453f2;
@@ -1886,8 +1893,16 @@ emoji-picker {
   padding: 0px 20px;
 }
 
-.recent-posts .recent-post .post {
-  gap: 10px;
+.recent-posts .recent-post .post a {
+  transition: all 0.3s ease-in-out;
+}
+.recent-posts .recent-post .post a:hover {
+  scale: 0.98;
+  opacity: 0.95;
+}
+.recent-posts .recent-post .post .inner-div {
+  display: flex;
+  gap: 20px;
 }
 .recent-posts .recent-post .post .post-thumb img {
   width: 130px;
@@ -1904,6 +1919,11 @@ emoji-picker {
 }
 .recent-posts .recent-post .post .post-content .post-info span {
   font-size: 12px;
+}
+.recent-posts .recent-post .post .post-content .post-info a {
+  display: inline-block;
+  margin-left: -4px;
+  white-space: nowrap;
 }
 .recent-posts .recent-post .post .post-content .posting-time {
   font-size: 12px;
