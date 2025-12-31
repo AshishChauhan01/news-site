@@ -1,16 +1,15 @@
 <?php
+session_start();
 $activePage = 'posts';
 include "header.php";
-session_start();
-echo $_GET['search_term'];
-die();
 $page_title = "All Posts";
 $category_id = 0;
 $author_id = 0;
 $post_type = "";
 $post_id = "";
+$search_term = "";
 $total_posts_q = "SELECT id FROM posts ";
-if (isset($_GET['post_type']) && is_numeric($_GET['id'])) {
+if (isset($_GET['post_type']) && is_numeric($_GsET['id'])) {
     if ($_GET['post_type'] == "category") {
         $post_id = $category_id = (int) $_GET['id'];
         $get_cat_name = mysqli_fetch_assoc(mysqli_query($conn, "SELECT category_name FROM categories WHERE id = $category_id"));
@@ -25,10 +24,8 @@ if (isset($_GET['post_type']) && is_numeric($_GET['id'])) {
         $post_type = "author";
         $total_posts_q .= "WHERE author_id = $post_id";
     }
-} else if (isset($_GET['post_type']) && $_GET['post_type'] == "search") {
-    if ($_GET['post_type'] == "search") {
-        $search_term = $_GET['id'];
-    }
+} else if (isset($_GET['search_term'])) {
+    $search_term = $_GET['search_term'];
 } else {
     $category_id = 0;
     $author_id = 0;
@@ -48,8 +45,9 @@ $get_posts_query = "SELECT ps.*, cs.category_name, us.first_name, us.last_name F
                     LEFT JOIN categories as cs ON ps.category_id = cs.id 
                     LEFT JOIN users as us ON ps.author_id = us.id
                     WHERE ($category_id = 0 OR ps.category_id = $category_id) 
-                    AND ($author_id = 0 OR ps.author_id = $author_id)
-                    ORDER BY id DESC LIMIT $posts_offset, $limit";
+                    AND ($author_id = 0 OR ps.author_id = $author_id) 
+                    AND (ps.title LIKE '%$search_term%' OR ps.description LIKE '%$search_term%')
+                    ORDER BY ps.id DESC LIMIT $posts_offset, $limit";
 
 $get_posts = mysqli_query($conn, $get_posts_query);
 
@@ -78,9 +76,11 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                     <div class="col-md-6">
                         <h2><?= $page_title; ?></h2>
                     </div>
-                    <div class="col-md-6 text-end">
-                        <a href="add-post.php" class="btn btn-success btn-sm"><i class="fa-solid fa-plus"></i>&nbsp;Add Post</a>
-                    </div>
+                    <?php if (isset($_SESSION['login_user_id'])) : ?>
+                        <div class="col-md-6 text-end">
+                            <a href="add-post.php" class="btn btn-success btn-sm"><i class="fa-solid fa-plus"></i>&nbsp;Add Post</a>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
             <table class="table">
