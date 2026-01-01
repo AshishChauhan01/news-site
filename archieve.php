@@ -9,7 +9,7 @@ $post_type = "";
 $post_id = "";
 $search_term = "";
 $total_posts_q = "SELECT id FROM posts ";
-if (isset($_GET['post_type']) && is_numeric($_GsET['id'])) {
+if (isset($_GET['post_type']) && is_numeric($_GET['id'])) {
     if ($_GET['post_type'] == "category") {
         $post_id = $category_id = (int) $_GET['id'];
         $get_cat_name = mysqli_fetch_assoc(mysqli_query($conn, "SELECT category_name FROM categories WHERE id = $category_id"));
@@ -26,6 +26,7 @@ if (isset($_GET['post_type']) && is_numeric($_GsET['id'])) {
     }
 } else if (isset($_GET['search_term'])) {
     $search_term = $_GET['search_term'];
+    $page_title = "Search Term:<b>" . $search_term . "</b>";
 } else {
     $category_id = 0;
     $author_id = 0;
@@ -46,7 +47,7 @@ $get_posts_query = "SELECT ps.*, cs.category_name, us.first_name, us.last_name F
                     LEFT JOIN users as us ON ps.author_id = us.id
                     WHERE ($category_id = 0 OR ps.category_id = $category_id) 
                     AND ($author_id = 0 OR ps.author_id = $author_id) 
-                    AND (ps.title LIKE '%$search_term%' OR ps.description LIKE '%$search_term%')
+                    AND (ps.title LIKE '%$search_term%' OR ps.description LIKE '%$search_term%' OR us.first_name LIKE '%$search_term%')
                     ORDER BY ps.id DESC LIMIT $posts_offset, $limit";
 
 $get_posts = mysqli_query($conn, $get_posts_query);
