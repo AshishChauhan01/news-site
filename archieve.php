@@ -8,6 +8,7 @@ $author_id = 0;
 $post_type = "";
 $post_id = "";
 $search_term = "";
+$search_keyword = "";
 $total_posts_q = "SELECT id FROM posts ";
 if (isset($_GET['post_type']) && is_numeric($_GET['id'])) {
     if ($_GET['post_type'] == "category") {
@@ -24,9 +25,10 @@ if (isset($_GET['post_type']) && is_numeric($_GET['id'])) {
         $post_type = "author";
         $total_posts_q .= "WHERE author_id = $post_id";
     }
-} else if (isset($_GET['search_term'])) {
+} else if (isset($_GET['search_term']) && ($_GET['search_term']) !== "NULL") {
     $search_term = $_GET['search_term'];
     $page_title = "Search Term:<b>" . $search_term . "</b>";
+    $search_keyword = '&search_term=' . $search_term;
 } else {
     $category_id = 0;
     $author_id = 0;
@@ -47,7 +49,11 @@ $get_posts_query = "SELECT ps.*, cs.category_name, us.first_name, us.last_name F
                     LEFT JOIN users as us ON ps.author_id = us.id
                     WHERE ($category_id = 0 OR ps.category_id = $category_id) 
                     AND ($author_id = 0 OR ps.author_id = $author_id) 
-                    AND (ps.title LIKE '%$search_term%' OR ps.description LIKE '%$search_term%' OR us.first_name LIKE '%$search_term%')
+                    AND (ps.title LIKE '%$search_term%' 
+                    OR ps.description LIKE '%$search_term%' 
+                    OR us.first_name LIKE '%$search_term%'
+                    OR us.last_name LIKE '%$search_term%'
+                    OR concat(us.first_name, ' ', us.last_name) LIKE '%$search_term%')
                     ORDER BY ps.id DESC LIMIT $posts_offset, $limit";
 
 $get_posts = mysqli_query($conn, $get_posts_query);
@@ -175,7 +181,7 @@ if (isset($_GET['success']) || isset($_GET['error'])) {
                     </li>
                     <?php for ($i = 1; $i <= $no_of_pages; $i++) : ?>
                         <li class="page-item <?= $i == $current_page ? 'active' : ''; ?>">
-                            <a href="<?php echo $_SERVER['PHP_SELF'] . '?page=' . $i . '&post_type=' . $post_type . '&id=' . $post_id ?>" class="page-link"><?= $i; ?></a>
+                            <a href="<?php echo $_SERVER['PHP_SELF'] . '?page=' . $i . '&post_type=' . $post_type . '&id=' . $post_id . $search_keyword ?>" class="page-link"><?= $i; ?></a>
                         </li>
                     <?php endfor; ?>
                     <li class="page-item">
